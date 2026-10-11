@@ -65,7 +65,14 @@ Joint limits: base ±3.14, shoulder ±1.57, elbow 0–3.14, wrist ±1.57, roll �
 - **Reading joints over WiFi:** an HTTP `{"T":105}` request returns only `{"ok":1}`. The actual reply arrives on the WebSocket at `ws://<ip>/ws`. Sending JSON *into* the WebSocket does nothing. Round trips are about 70 ms with spikes to 300 ms, so the notebook defaults to USB, which is steadier.
 - **USB:** set RTS and DTR low before opening the port, or the ESP32 resets. `arm.py` does this.
 - **`{"T":405}` scrambles** its password and hotspot-name fields. It's a display bug; the saved settings are fine. The garbage can include characters that are illegal in JSON, so parse its reply with `json.loads(line, strict=False)`.
-- **The arm doesn't rejoin WiFi on its own after a dropout.** `{"T":405}` then shows `"ip":"0.0.0.0"`. Power-cycle it, or over USB send `{"T":407,"mode":3,"ap_ssid":"RoArm-M3","ap_password":"12345678","sta_ssid":"<network>","sta_password":"<password>"}`, which saves a clean WiFi config and reconnects.
+- **The firmware saves a corrupted WiFi password.** `T:406` and `T:407` both write garbage into `sta_password` in `/wifiConfig.json`, so at startup the arm fails to join ("STA connection timeout") and falls back to hotspot-only.
+  - Workaround: the arm runs `boot.mission` at every startup, and this arm's has the connect command added as step 1:
+    ```
+    {"T":222,"name":"boot","step":"{\"T\":404,\"ap_ssid\":\"RoArm-M3\",\"ap_password\":\"12345678\",\"sta_ssid\":\"<network>\",\"sta_password\":\"<password>\"}"}
+    ```
+  - Check it with `{"T":221,"name":"boot"}`. If the WiFi password changes, delete the step with `{"T":231,"name":"boot","stepNum":1}` and add a new one.
+- **The arm doesn't rejoin WiFi on its own after a dropout while running.** `{"T":405}` then shows `"ip":"0.0.0.0"`. Restart it, or send the `T:404` command over USB.
+- **Restarting needs the USB cable unplugged too.** USB powers the controller, so the power switch alone only cuts the motors. With USB connected, a reset pulse also restarts it: RTS high for 0.15 s with DTR low.
 - **"Bytes received: … / Invalid data, ignore"** on the serial port is the arm ignoring wireless broadcasts (ESP-NOW) from some other device nearby. It's harmless.
 - **LeRobot 0.6.1 training was 80× slower than it should be:**
   - ACT reads 100 future actions per sample, and LeRobot fetched them in a way that also loaded every camera image in those rows (357 ms per sample, about 2 s per step).
