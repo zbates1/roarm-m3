@@ -58,35 +58,55 @@ def main():
     roll, grip = fb["r"], fb["g"]
     print(f"Tuned gains {gains}; comparing {args.rounds} rounds x 4 corners x 2 modes", flush=True)
 
-    def move(mode, a, b):
+    def move(mode, a, b, label):
         if mode == "stock":
             M.move_tcp(arm, a, b, PITCH, roll, grip, rate)
         else:
             M.move_tcp_joints(arm, a, b, PITCH, roll, grip, rate, gravity=gravity)
+        try:
+            tip(arm)
+        except RuntimeError as e:
+            raise RuntimeError(f"after '{label}' ({mode}): {e}") from None
+
+    def switch(to, at):
+        """Change modes while holding at `at`: blend the feedforward offset in or
+        out over 0.5 s at stock gains, and ramp the gains rather than jumping."""
+        plain = M.joints_for(at, PITCH, roll, grip)
+        ff = M.joints_for(at, PITCH, roll, grip, gravity)
+        if to == "tuned":
+            M.stream(lambda q: arm.move(q, spd=0, acc=0), plain, ff, 0.5, rate)
+            tuning.apply_gains(arm, gains)
+        else:
+            arm.reset_pid()
+            M.stream(lambda q: arm.move(q, spd=0, acc=0), ff, plain, 0.5, rate)
+        time.sleep(0.3)
+        try:
+            tip(arm)
+        except RuntimeError as e:
+            raise RuntimeError(f"switching to {to}: {e}") from None
 
     results = {"stock": [], "tuned": []}
     try:
         arm.reset_pid()
         M.go_to_pose(arm, READY, PITCH, roll, grip, rate)
-        here = READY.copy()
+        here, current = READY.copy(), "stock"
         for r in range(args.rounds):
             for k, corner in enumerate(CORNERS):
                 for mode in (("stock", "tuned") if (r + k) % 2 == 0 else ("tuned", "stock")):
                     top = corner + [0, 0, DIP]
-                    if mode == "stock":
-                        arm.reset_pid()
-                    else:
-                        tuning.apply_gains(arm, gains)
-                    move(mode, here, top)
-                    move(mode, top, top + ASIDE)
-                    move(mode, top + ASIDE, top)
-                    move(mode, top, corner)
+                    move(current, here, top, "to the corner's top")
+                    if mode != current:
+                        switch(mode, top)
+                        current = mode
+                    move(mode, top, top + ASIDE, "aside")
+                    move(mode, top + ASIDE, top, "back")
+                    move(mode, top, corner, "down")
                     time.sleep(0.6)
                     err = tip(arm) - corner
                     results[mode].append({"corner": k, "err": err.tolist()})
                     print(f"round {r + 1} corner {k + 1} {mode:5s}: off by {np.linalg.norm(err):.2f} mm "
                           f"(x {err[0]:+.2f} y {err[1]:+.2f} z {err[2]:+.2f})", flush=True)
-                    move(mode, corner, top)
+                    move(mode, corner, top, "up")
                     here = top
     except (KeyboardInterrupt, RuntimeError, ValueError) as e:
         print(f"Stopped: {e}")

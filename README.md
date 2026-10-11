@@ -39,6 +39,33 @@ To train on a faster PC (e.g. the 3090):
 3. Run `uv run python scripts/train.py data/electrode_pick outputs/act_electrode_pick`. With 24 GB of memory you can also try `--batch-size 16 --workers 8`.
 4. Copy `outputs/act_electrode_pick/checkpoints/last/pretrained_model` (about 200 MB) back to the same path on this PC, then run step 4 of the notebook.
 
+## Control tuning (2026-10-11)
+
+`tmp_scripts/autotune.py` ran unattended experiments around the ready pose (x=180, z=−40, gripper down); results and logs are in `tmp_scripts/results/`. What it found:
+
+- **Friction bands** (how far a joint's resting point depends on which way it last moved), in encoder steps (1 step = 0.088°):
+
+  | Joint | Stock P=16 | P=48 | **P=80** |
+  |---|---|---|---|
+  | Base | 18 | 6 | **5** |
+  | Shoulder | 31 | 17 | **8** |
+  | Elbow | 18 | 7 | **4** |
+  | Wrist | 10 | 3 | **3** |
+
+- **Integral gain is unusable.** Even I=2 oscillates: the integral builds while friction holds the joint, it breaks free, overshoots, and repeats. P up to 80 was stable on every joint, at rest and after moves.
+- **Gravity feedforward.** Each loaded joint's sag is fitted as a linear function of its gravity lever arms (`motion.GravityModel`) and added to the joint commands. On poses not used for fitting, at P=80: 1.58 mm off without feedforward → **0.72 mm** with it (height error −1.37 → +0.07 mm). Stock control lands ~3 mm off.
+- **To use it:**
+  ```python
+  from roarm import motion, tuning
+  gains, gravity = tuning.load()
+  tuning.apply_gains(arm, gains)   # until the arm restarts
+  motion.move_tcp_joints(arm, a, b, pitch, roll, grip, rate, gravity=gravity)
+  ```
+- **Limits:**
+  - The model was fitted for the gripper pointing down, x 160–235 mm, z −65..−15 mm, with poses reached from above.
+  - Higher P also means the arm pushes up to 5× harder against anything that blocks it.
+  - The notebook still uses stock gains.
+
 ## This arm
 
 | | |

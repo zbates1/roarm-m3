@@ -32,7 +32,15 @@ def save(gains, gravity, source, path=PATH):
     }, indent=1))
 
 
-def apply_gains(arm, gains):
-    for name, p in gains.items():
-        arm.set_pid(JOINT_IDS[name], p, 0)
-    time.sleep(0.5)
+def apply_gains(arm, gains, start=16, step=16, dwell=0.25):
+    """Ramp each joint's P from `start` up to its tuned value in steps.
+
+    Jumping straight from 16 to 80 while a joint is holding with a lag of a few
+    dozen counts multiplies its drive ~5x at once; that tripped the firmware's
+    2 A overcurrent warning once. Ramping lets each joint close its lag first.
+    """
+    top = max(gains.values())
+    for p in list(range(start + step, top, step)) + [top]:
+        for name, target in gains.items():
+            arm.set_pid(JOINT_IDS[name], min(p, target), 0)
+        time.sleep(dwell)
