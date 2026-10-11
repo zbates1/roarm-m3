@@ -7,7 +7,9 @@ imitation_learning.ipynb   record demos -> train -> run (start here)
 roarm/arm.py               talk to the arm over USB or WiFi (JSON commands)
 roarm/camera.py            USB cameras via OpenCV
 roarm/teach.py             recording, training and running the policy
+roarm/train_lerobot.py     lerobot-train plus two fixes (speed, Windows)
 scripts/check_arm.py       connection test; doesn't move the arm
+scripts/train.py           train from a terminal, e.g. on a faster PC
 docs/cameras.md            which cameras to buy and how to mount them
 ```
 
@@ -21,7 +23,18 @@ uv run python scripts/check_arm.py    # should print the six joint angles
 
 Open `imitation_learning.ipynb` in VS Code and pick the `.venv` kernel.
 
-PyTorch is pinned to the CUDA 12.6 build because newer CUDA builds dropped support for the GTX 1060.
+PyTorch is pinned to the CUDA 12.6 build because newer CUDA builds dropped support for the GTX 1060. That build also runs on newer cards like the RTX 3090.
+
+## Training
+
+ACT, 20,000 steps, batch 8, two 240×320 cameras: about **3.6 steps/s on the GTX 1060 (≈1.5 h)**, using 3.5 GB of GPU memory.
+
+To train on a faster PC (e.g. the 3090):
+
+1. On that PC: install [uv](https://docs.astral.sh/uv/) and git, clone this repo, run `uv sync`.
+2. Copy the `data/electrode_pick` folder over (same path inside the repo).
+3. Run `uv run python scripts/train.py data/electrode_pick outputs/act_electrode_pick`. With 24 GB of memory you can also try `--batch-size 16 --workers 8`.
+4. Copy `outputs/act_electrode_pick/checkpoints/last/pretrained_model` (about 200 MB) back to the same path on this PC, then run step 4 of the notebook.
 
 ## This arm
 
@@ -52,8 +65,11 @@ Joint limits: base ±3.14, shoulder ±1.57, elbow 0–3.14, wrist ±1.57, roll �
 - **Reading joints over WiFi:** an HTTP `{"T":105}` request returns only `{"ok":1}`. The actual reply arrives on the WebSocket at `ws://<ip>/ws`. Sending JSON *into* the WebSocket does nothing. Round trips are about 70 ms with spikes to 300 ms, so the notebook defaults to USB, which is steadier.
 - **USB:** set RTS and DTR low before opening the port, or the ESP32 resets. `arm.py` does this.
 - **`{"T":405}` scrambles** its password and hotspot-name fields. It's a display bug; the saved settings are fine.
+- **LeRobot 0.6.1 training was 80× slower than it should be:**
+  - ACT reads 100 future actions per sample, and LeRobot fetched them in a way that also loaded every camera image in those rows (357 ms per sample, about 2 s per step).
+  - `roarm/train_lerobot.py` selects just the action column instead (4 ms per sample, same data), so training is GPU-bound.
 - **Windows + LeRobot:**
-  - `lerobot-train` marks the newest checkpoint with a symlink, which needs admin rights on Windows. `roarm/lerobot_train_win.py` uses a directory junction instead.
+  - `lerobot-train` marks the newest checkpoint with a symlink, which needs admin rights on Windows. `roarm/train_lerobot.py` uses a directory junction instead.
   - The `torchcodec` DLL warning during training is harmless: datasets here store images, not video.
 - **Disk:** Hugging Face caches every dataset it loads. `roarm/__init__.py` points that cache at `.cache/` in this repo. Each training checkpoint is about 600 MB.
 

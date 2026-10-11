@@ -91,12 +91,12 @@ def record_episode(arm, cameras, dataset, task, fps, image_size, max_seconds=60)
     return True
 
 
-def train(dataset_root, repo_id, output_dir, steps=20_000, batch_size=8):
+def train(dataset_root, repo_id, output_dir, steps=20_000, batch_size=8, num_workers=2):
     """Train ACT with lerobot-train. Prints the log as it goes."""
     if Path(output_dir).exists():
         raise FileExistsError(f"{output_dir} exists. Pick a new output_dir or delete the old one.")
     cmd = [
-        sys.executable, "-m", "roarm.lerobot_train_win",
+        sys.executable, "-m", "roarm.train_lerobot",
         f"--dataset.repo_id={repo_id}",
         f"--dataset.root={dataset_root}",
         "--policy.type=act",
@@ -107,7 +107,7 @@ def train(dataset_root, repo_id, output_dir, steps=20_000, batch_size=8):
         f"--steps={steps}",
         f"--batch_size={batch_size}",
         f"--save_freq={max(1, steps // 4)}",
-        "--num_workers=2",
+        f"--num_workers={num_workers}",
         "--wandb.enable=false",
     ]
     print(" ".join(cmd[1:]))
