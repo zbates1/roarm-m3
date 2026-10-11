@@ -1,0 +1,31 @@
+[project]
+name = "roarm-m3"
+version = "0.1.0"
+description = "Control and imitation learning for the Waveshare RoArm-M3"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "lerobot[training]==0.6.1",
+    # CUDA 12.6 builds: the newest ones that still support a GTX 1060 (Pascal).
+    "torch==2.11.0",
+    "torchvision==0.26.0",
+    "pyserial>=3.5",
+    "websockets>=13",
+    "ipykernel",
+    "matplotlib",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu126" }
+torchvision = { index = "pytorch-cu126" }
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["roarm"]

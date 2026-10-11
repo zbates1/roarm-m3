@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Recorded datasets, training runs and caches are large; keep them out of git.
+data/
+outputs/
+.cache/
+
+# Waveshare downloads (link to them in the README instead).
+vendor/
