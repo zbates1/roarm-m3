@@ -189,6 +189,16 @@ class RoArm:
         """Turn all joint motors on or off. Off = the arm goes limp, so hold it first."""
         self.link.send({"T": 210, "cmd": 1 if on else 0})
 
+    def set_pid(self, joint, p, i):
+        """Set a joint's servo P and I gains (T:108). Joints: 1 base, 2 shoulder (both
+        servos), 3 elbow, 4 wrist, 5 roll, 6 gripper. Not saved: every startup resets
+        them to P=16, I=0."""
+        self.link.send({"T": 108, "joint": joint, "p": p, "i": i})
+
+    def reset_pid(self):
+        """All joints back to the firmware defaults, P=16, I=0 (T:109)."""
+        self.link.send({"T": 109})
+
     def hold(self):
         """Lock the arm where it is now (turns torque back on without a jump)."""
         self.move(self.state(), spd=300, acc=10)
