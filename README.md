@@ -5,12 +5,14 @@ Control and imitation learning for a [Waveshare RoArm-M3](https://www.waveshare.
 ```
 imitation_learning.ipynb   record demos -> train -> run (start here)
 roarm/arm.py               talk to the arm over USB or WiFi (JSON commands)
+roarm/kinematics.py        the firmware's IK/FK in Python, to check paths against joint limits
+roarm/motion.py            smooth streamed moves, limit checks, and settle() sag correction
 roarm/camera.py            USB cameras via OpenCV
 roarm/teach.py             recording, training and running the policy
 roarm/train_lerobot.py     lerobot-train plus two fixes (speed, Windows)
 scripts/check_arm.py       connection test; doesn't move the arm
 scripts/train.py           train from a terminal, e.g. on a faster PC
-tmp_scripts/               quick motion tests (e.g. square_dips.py)
+tmp_scripts/               quick motion tests: square_dips.py, dip_repeatability.py
 docs/cameras.md            which cameras to buy and how to mount them
 ```
 
