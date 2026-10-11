@@ -10,6 +10,7 @@ roarm/teach.py             recording, training and running the policy
 roarm/train_lerobot.py     lerobot-train plus two fixes (speed, Windows)
 scripts/check_arm.py       connection test; doesn't move the arm
 scripts/train.py           train from a terminal, e.g. on a faster PC
+tmp_scripts/               quick motion tests (e.g. square_dips.py)
 docs/cameras.md            which cameras to buy and how to mount them
 ```
 
@@ -64,6 +65,12 @@ Joint limits: base ±3.14, shoulder ±1.57, elbow 0–3.14, wrist ±1.57, roll �
 
 - **Reading joints over WiFi:** an HTTP `{"T":105}` request returns only `{"ok":1}`. The actual reply arrives on the WebSocket at `ws://<ip>/ws`. Sending JSON *into* the WebSocket does nothing. Round trips are about 70 ms with spikes to 300 ms, so the notebook defaults to USB, which is steadier.
 - **USB:** set RTS and DTR low before opening the port, or the ESP32 resets. `arm.py` does this.
+- **Why the arm dips when a move starts:**
+  - The servos hold position with a small sag under gravity.
+  - Every `T:105` reading (the web app sends them constantly) overwrites the firmware's stored "last position" with the measured, sagged pose.
+  - `T:104` smooth moves start from that stored position, so the first step drops the target by the sag.
+  - For smooth motion, plan the path yourself and stream small `T:1041` steps, which have no firmware smoothing, from your own targets. See `tmp_scripts/square_dips.py`.
+- **Coordinates:** x is forward and +y is the arm's own left (the firmware's "base + → left"). z = 0 is the shoulder pivot, about 126 mm above the base (`ARM_L1_LENGTH_MM`), not the table. `tit` is the gripper's pitch in the world frame (elbow + shoulder + wrist − π/2), which is what `T:1041` expects as `t`.
 - **`{"T":405}` scrambles** its password and hotspot-name fields. It's a display bug; the saved settings are fine. The garbage can include characters that are illegal in JSON, so parse its reply with `json.loads(line, strict=False)`.
 - **The firmware saves a corrupted WiFi password.** `T:406` and `T:407` both write garbage into `sta_password` in `/wifiConfig.json`, so at startup the arm fails to join ("STA connection timeout") and falls back to hotspot-only.
   - Workaround: the arm runs `boot.mission` at every startup, and this arm's has the connect command added as step 1:

@@ -121,10 +121,26 @@ class RoArm:
         self.link = _Serial(target) if is_serial else _Wifi(target)
         self.target = target
 
+    def feedback(self):
+        """Everything T:105 reports: joints b s e t r g (rad), gripper tip x y z (mm),
+        tit (gripper pitch, rad), loads tB..tG, torque flags torswitchB..G, v (0.01 V)."""
+        return self.link.query({"T": 105}, 1051)
+
     def state(self):
         """Current joint angles (radians), in JOINTS order."""
-        fb = self.link.query({"T": 105}, 1051)
+        fb = self.feedback()
         return np.array([fb[k] for k in _FEEDBACK_KEYS], dtype=np.float32)
+
+    def move_tcp(self, x, y, z, pitch, roll, gripper):
+        """Jump the gripper tip to x, y, z (mm) with no smoothing (T:1041).
+
+        pitch is the gripper's angle in the world frame (feedback "tit").
+        For smooth motion, call this many times with small steps.
+        """
+        self.link.send({
+            "T": 1041, "x": round(float(x), 2), "y": round(float(y), 2), "z": round(float(z), 2),
+            "t": round(float(pitch), 4), "r": round(float(roll), 4), "g": round(float(gripper), 4),
+        })
 
     def move(self, joints, spd=0, acc=10):
         """Send all six joint targets (radians). spd 0 = max speed, in steps/s (4096 per turn)."""
