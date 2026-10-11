@@ -31,6 +31,7 @@ import numpy as np
 
 from roarm import kinematics as K
 from roarm import motion as M
+from roarm import tuning
 from roarm.arm import RoArm
 
 COUNT = 2 * math.pi / 4096                 # one encoder step (rad)
@@ -317,6 +318,8 @@ def main():
         log["E_gravity_check"] = lab.gravity_check(model)
         log["F_steps_tuned"] = lab.step_test("tuned")
         log["finished"] = "ok"
+        tuning.save(tuned, model, source=path.name)
+        say(f"Saved tuned gains + gravity model to {tuning.PATH}")
     except Abort as e:
         say(f"STOPPED for safety: {e}")
         log["finished"] = f"stopped: {e}"

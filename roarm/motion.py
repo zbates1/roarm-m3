@@ -85,6 +85,27 @@ def move_tcp(arm, a, b, pitch, roll, grip, rate, speed=15.0, end_pitch=None):
            np.append(a, pitch), np.append(b, end_pitch), duration, rate)
 
 
+def joints_for(xyz, pitch, roll, grip, gravity=None):
+    """Joint command for a tip pose, with gravity feedforward if a model is given."""
+    j = K.ik(*xyz, pitch)
+    if j is None:
+        raise ValueError(f"{np.round(xyz, 1)} is out of reach")
+    q = np.array([j["base"], j["shoulder"], j["elbow"], j["wrist"], roll, grip])
+    if gravity is not None:
+        q[1:4] += gravity.predict(q[1:4])
+    return q
+
+
+def move_tcp_joints(arm, a, b, pitch, roll, grip, rate, speed=15.0, gravity=None):
+    """Like move_tcp, but solves the joints here and streams them (T:102), so a
+    gravity model can be added. Checks the line against the joint limits first."""
+    problems = check_line(a, b, pitch)
+    if problems:
+        raise ValueError(problems[0])
+    duration = max(1.0, np.linalg.norm(np.asarray(b, float) - a) / speed)
+    stream(lambda p: arm.move(joints_for(p, pitch, roll, grip, gravity), spd=0, acc=0), a, b, duration, rate)
+
+
 def measured(arm):
     fb = arm.feedback()
     return np.array([fb["x"], fb["y"], fb["z"]]), fb["tit"]
