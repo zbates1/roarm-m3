@@ -11,7 +11,7 @@ and end at zero. It reads the arm's position once at the start and never again.
 
     uv run python tmp_scripts/square_dips.py            # USB, found automatically
     uv run python tmp_scripts/square_dips.py --dry-run  # print the path, don't move
-    uv run python tmp_scripts/square_dips.py --arm 192.168.1.203   # over WiFi (less smooth)
+    uv run python tmp_scripts/square_dips.py --arm 192.168.1.203   # over WiFi (20 steps/s)
     Ctrl+C stops it; the arm holds wherever it is.
 """
 import argparse
@@ -25,14 +25,27 @@ SIDE = 20.0       # mm, side of the square
 DIP = 20.0        # mm, how far down at each corner
 PAUSE = 2.0       # s, at the bottom of each dip
 MOVE_TIME = 1.5   # s, for each 20 mm move
-RATE = 50         # Hz, how often a new target is sent
+RATE_USB = 50     # Hz, how often a new target is sent over USB
+RATE_WIFI = 20    # Hz over WiFi: each HTTP command takes ~20-45 ms, sometimes 150
 LEFT = +1         # +y is the arm's own left (your right, if you face it). -1 flips it.
 
 
-def min_jerk(n):
-    """n points from 0 to 1 with zero speed and acceleration at both ends."""
-    s = np.linspace(0, 1, n)
-    return 10 * s**3 - 15 * s**4 + 6 * s**5
+def min_jerk(u):
+    """0 -> 1 as u goes 0 -> 1, with zero speed and acceleration at both ends."""
+    return 10 * u**3 - 15 * u**4 + 6 * u**5
+
+
+def smooth_move(arm, a, b, pitch, roll, grip, rate):
+    """Stream targets from a to b. Each target comes from the clock, so a slow
+    command makes the next step catch up instead of the whole move lagging."""
+    t0 = time.perf_counter()
+    while True:
+        tick = time.perf_counter()
+        u = min(1.0, (tick - t0) / MOVE_TIME)
+        arm.move_tcp(*(a + (b - a) * min_jerk(u)), pitch, roll, grip)
+        if u >= 1.0:
+            return
+        time.sleep(max(0.0, 1 / rate - (time.perf_counter() - tick)))
 
 
 def plan(start):
@@ -82,19 +95,16 @@ def main():
         arm.move(joints_before, spd=300, acc=10)
         raise SystemExit(f"A joint moved {jump:.2f} rad just holding still. Stopped; please tell Claude.")
 
-    input("Clear the area, then press Enter to start...")
+    rate = RATE_WIFI if "." in arm.target else RATE_USB
+    input(f"Clear the area, then press Enter to start ({rate} steps/s over {arm.target})...")
     here = start.copy()
     try:
         for kind, value in steps:
             if kind == "pause":
                 time.sleep(value)
-                continue
-            n = max(2, int(MOVE_TIME * RATE))
-            t0 = time.perf_counter()
-            for i, s in enumerate(min_jerk(n)):
-                arm.move_tcp(*(here + (value - here) * s), pitch, roll, grip)
-                time.sleep(max(0.0, t0 + (i + 1) / RATE - time.perf_counter()))
-            here = value
+            else:
+                smooth_move(arm, here, value, pitch, roll, grip, rate)
+                here = value
         print("Done.")
     except KeyboardInterrupt:
         print("Stopped; the arm holds where it is.")
