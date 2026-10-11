@@ -6,8 +6,11 @@ and T:1041 silently clamps joints at their limits. Here we plan the path,
 check it against the limits, and stream small steps on a minimum-jerk curve.
 
 The servos only run proportional control, so the arm settles a few mm short
-of where it's sent. settle() measures that once the arm is still and re-aims
-by the difference.
+of where it's sent. Correcting that afterwards (re-aiming from where it
+stopped) fails for the joints that hold the arm up: reversing against
+gravity + friction doesn't unstick them. What works is approaching from the
+same direction every time, which lands within ~0.2 mm, and aiming ahead by
+the learned offset (LandingOffset).
 """
 import math
 import time
@@ -86,29 +89,25 @@ def measured(arm):
     return np.array([fb["x"], fb["y"], fb["z"]]), fb["tit"]
 
 
-def settle(arm, target, pitch, aim, aim_pitch, roll, grip, rate,
-           rounds=2, wait=0.4, max_fix_mm=10.0, max_fix_deg=5.0):
-    """Re-aim until the measured tip matches `target` (or `rounds` run out).
+class LandingOffset:
+    """Learns how far the arm lands from where it's sent, so you can aim ahead.
 
-    `aim`/`aim_pitch` are what was last sent. Each round: wait for the arm to
-    go still, measure, and shift the aim by the remaining error. Corrections
-    are capped and limit-checked. Returns the new aim, aim pitch, and the
-    measured position and pitch after the last round.
+    Only valid for the same approach direction, the same area of the workspace
+    and the same load: the offset comes from gravity and friction, which change
+    with all three.
     """
-    target, aim = np.asarray(target, float), np.asarray(aim, float)
-    for _ in range(rounds):
-        time.sleep(wait)
-        pos, tit = measured(arm)
-        err, err_p = target - pos, pitch - tit
-        if np.linalg.norm(err) < 0.3 and abs(err_p) < math.radians(0.2):
-            return aim, aim_pitch, pos, tit
-        new_aim = target + np.clip(aim + err - target, -max_fix_mm, max_fix_mm)
-        new_pitch = pitch + float(np.clip(aim_pitch + err_p - pitch, -math.radians(max_fix_deg), math.radians(max_fix_deg)))
-        if K.limit_problems(*new_aim, new_pitch, margin=0.02):
-            break
-        stream(lambda v: arm.move_tcp(*v[:3], v[3], roll, grip),
-               np.append(aim, aim_pitch), np.append(new_aim, new_pitch), 0.3, rate)
-        aim, aim_pitch = new_aim, new_pitch
-    time.sleep(wait)
-    pos, tit = measured(arm)
-    return aim, aim_pitch, pos, tit
+
+    def __init__(self, max_mm=10.0, max_deg=5.0):
+        self.errors, self.max_mm, self.max_rad = [], max_mm, math.radians(max_deg)
+
+    def add(self, aim, aim_pitch, pos, tit):
+        """Record one landing: what was sent vs what the arm measured."""
+        self.errors.append(np.append(np.asarray(aim, float) - pos, aim_pitch - tit))
+
+    def aim(self, target, pitch):
+        """Where to send the arm so it lands on `target` at `pitch`."""
+        if not self.errors:
+            return np.asarray(target, float), pitch
+        e = np.mean(self.errors, axis=0)
+        return (np.asarray(target, float) + np.clip(e[:3], -self.max_mm, self.max_mm),
+                pitch + float(np.clip(e[3], -self.max_rad, self.max_rad)))
