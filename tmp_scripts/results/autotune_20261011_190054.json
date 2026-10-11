@@ -1,0 +1,35 @@
+{
+ "started": "2026-10-11 19:00:54",
+ "steps": [
+  0,
+  2,
+  4,
+  8,
+  16,
+  32,
+  16,
+  8,
+  4,
+  2,
+  0,
+  -2,
+  -4,
+  -8,
+  -16,
+  -32,
+  -16,
+  -8,
+  -4,
+  -2,
+  0
+ ],
+ "p_values": [
+  16,
+  24,
+  32,
+  40,
+  48
+ ],
+ "finished": "error: ValueError('getting there from here would swing the tip down to z=-47 mm; move the arm up first (e.g. {\"T\":100})')",
+ "traceback": "Traceback (most recent call last):\n  File \"D:\\repos\\roarm-m3\\tmp_scripts\\autotune.py\", line 295, in main\n    log[\"A_steps_stock\"] = lab.step_test(\"stock\")\n                           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\repos\\roarm-m3\\tmp_scripts\\autotune.py\", line 134, in step_test\n    self.go(READY)\n  File \"D:\\repos\\roarm-m3\\tmp_scripts\\autotune.py\", line 114, in go\n    M.go_to_pose(self.arm, target + up, PITCH, self.roll, self.grip, self.rate)\n  File \"D:\\repos\\roarm-m3\\roarm\\motion.py\", line 70, in go_to_pose\n    raise ValueError(f\"getting there from here would swing the tip down to z={lowest:.0f} mm; \"\nValueError: getting there from here would swing the tip down to z=-47 mm; move the arm up first (e.g. {\"T\":100})\n"
+}

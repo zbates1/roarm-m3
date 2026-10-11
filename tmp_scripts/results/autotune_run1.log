@@ -1,0 +1,5 @@
+19:00:55 Connected on COM14; supply 12.12 V
+19:00:55 Step test (stock): {'base': 16, 'shoulder': 16, 'elbow': 16, 'wrist': 16}
+19:00:55 STOPPED on error: ValueError('getting there from here would swing the tip down to z=-47 mm; move the arm up first (e.g. {"T":100})')
+19:00:55 Gains reset to P=16. Results: D:\repos\roarm-m3\tmp_scripts\results\autotune_20261011_190054.json
+EXIT 0

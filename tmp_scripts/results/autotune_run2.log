@@ -1,0 +1,58 @@
+19:01:28 Connected on COM14; supply 12.13 V
+19:01:28 Step test (stock): {'base': 16, 'shoulder': 16, 'elbow': 16, 'wrist': 16}
+19:01:56   base     sag -2.0  band 18.0  first move +16 / -2  lag at +32: +10.0, at -32: -13.0  (counts)
+19:02:22   shoulder sag -16.0  band 31.0  first move +4 / -8  lag at +32: -8.0, at -32: -36.0  (counts)
+19:02:47   elbow    sag +0.8  band 18.0  first move +2 / -2  lag at +32: +0.8, at -32: -17.2  (counts)
+19:03:12   wrist    sag -2.8  band 10.0  first move +16 / -4  lag at +32: +6.2, at -32: -0.8  (counts)
+19:03:12 P sweep, one joint at a time
+19:03:19   base     P=16: holding std 0.00, max-min 0.0, lag +3.0 counts
+19:03:23   base     P=24: holding std 0.00, max-min 0.0, lag +3.0 counts
+19:03:27   base     P=32: holding std 0.00, max-min 0.0, lag +2.0 counts
+19:03:31   base     P=40: holding std 0.00, max-min 0.0, lag +2.0 counts
+19:03:35   base     P=48: holding std 0.00, max-min 0.0, lag +1.0 counts
+19:03:39   shoulder P=16: holding std 0.00, max-min 0.0, lag -14.0 counts
+19:03:43   shoulder P=24: holding std 0.00, max-min 0.0, lag -14.0 counts
+19:03:47   shoulder P=32: holding std 0.00, max-min 0.0, lag -14.0 counts
+19:03:51   shoulder P=40: holding std 0.00, max-min 0.0, lag -12.0 counts
+19:03:55   shoulder P=48: holding std 0.00, max-min 0.0, lag -11.0 counts
+19:04:00   elbow    P=16: holding std 0.00, max-min 0.0, lag -7.2 counts
+19:04:04   elbow    P=24: holding std 0.00, max-min 0.0, lag -3.2 counts
+19:04:08   elbow    P=32: holding std 0.00, max-min 0.0, lag -1.2 counts
+19:04:12   elbow    P=40: holding std 0.00, max-min 0.0, lag +0.8 counts
+19:04:16   elbow    P=48: holding std 0.00, max-min 0.0, lag +0.8 counts
+19:04:20   wrist    P=16: holding std 0.00, max-min 0.0, lag +7.2 counts
+19:04:24   wrist    P=24: holding std 0.00, max-min 0.0, lag +7.2 counts
+19:04:28   wrist    P=32: holding std 0.00, max-min 0.0, lag +3.2 counts
+19:04:32   wrist    P=40: holding std 0.00, max-min 0.0, lag +3.2 counts
+19:04:36   wrist    P=48: holding std 0.00, max-min 0.0, lag +2.2 counts
+19:04:37 Highest stable P per joint: {'base': 48, 'shoulder': 48, 'elbow': 48, 'wrist': 48}
+19:04:53 Motion check {'base': 48, 'shoulder': 48, 'elbow': 48, 'wrist': 48}: worst std 0.00, max-min 0.0
+19:05:13 Landing (stock): height off -2.46 mm (spread 0.03), distance off 3.10 mm, 3 mm step up moved +0.07, jitter 0.0 counts
+19:05:34 Landing (tuned): height off -1.11 mm (spread 0.15), distance off 1.41 mm, 3 mm step up moved +0.35, jitter 0.0 counts
+19:05:34 Gravity model: measuring sag over the grid
+19:05:38   at (160, 0.0, -65): sag shoulder -3.9, elbow +0.5, wrist +1.3 counts
+19:05:43   at (160, 0.0, -40): sag shoulder -2.7, elbow -0.8, wrist +2.5 counts
+19:05:48   at (160, 0.0, -15): sag shoulder -3.5, elbow +0.2, wrist +1.2 counts
+19:05:53   at (185, 0.0, -65): sag shoulder -6.4, elbow +1.4, wrist -1.0 counts
+19:05:58   at (185, 0.0, -40): sag shoulder -2.8, elbow +1.3, wrist -0.4 counts
+19:06:03   at (185, 0.0, -15): sag shoulder -6.5, elbow -0.2, wrist -0.4 counts
+19:06:08   at (210, 0.0, -65): sag shoulder -4.6, elbow +0.1, wrist +1.5 counts
+19:06:13   at (210, 0.0, -40): sag shoulder -2.8, elbow -0.4, wrist +1.1 counts
+19:06:18   at (210, 0.0, -15): sag shoulder -5.4, elbow +0.1, wrist +0.3 counts
+19:06:23   at (235, 0.0, -65): sag shoulder -7.6, elbow -0.0, wrist -0.4 counts
+19:06:28   at (235, 0.0, -40): sag shoulder -6.0, elbow -2.4, wrist +0.4 counts
+19:06:33   at (235, 0.0, -15): sag shoulder -6.8, elbow -1.7, wrist +0.5 counts
+19:06:33   fit residual (counts): [1.31, 0.85, 0.97]
+19:06:33 Gravity model: checking on poses it wasn't fitted on
+19:06:43   at (175, 25, -55): plain 1.58 mm off (z -1.42), feedforward 1.05 mm off (z -0.74)
+19:06:56   at (225, -25, -30): plain 2.64 mm off (z -1.95), feedforward 1.82 mm off (z +0.13)
+19:07:07   at (200, 30, -20): plain 2.10 mm off (z -1.87), feedforward 0.97 mm off (z -0.18)
+19:07:16   at (170, -20, -60): plain 1.96 mm off (z -1.31), feedforward 1.44 mm off (z +0.27)
+19:07:27   at (215, 15, -50): plain 3.09 mm off (z -2.67), feedforward 0.93 mm off (z -0.37)
+19:07:27 Step test (tuned): {'base': 48, 'shoulder': 48, 'elbow': 48, 'wrist': 48}
+19:07:58   base     sag -3.0  band 6.0  first move +8 / -2  lag at +32: +2.0, at -32: -4.0  (counts)
+19:08:23   shoulder sag -6.0  band 17.0  first move +4 / -2  lag at +32: -6.0, at -32: -17.0  (counts)
+19:08:48   elbow    sag +0.8  band 7.0  first move +2 / -2  lag at +32: -1.2, at -32: -5.2  (counts)
+19:09:14   wrist    sag +0.2  band 3.0  first move +8 / -2  lag at +32: +4.2, at -32: +0.2  (counts)
+19:09:17 Gains reset to P=16. Results: D:\repos\roarm-m3\tmp_scripts\results\autotune_20261011_190127.json
+EXIT 0

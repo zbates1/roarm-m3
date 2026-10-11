@@ -281,10 +281,20 @@ class Lab:
 
 
 def main():
+    import argparse
+
+    global P_VALUES
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--arm", default=None)
+    ap.add_argument("--p", type=int, nargs="+", default=P_VALUES, help="P values for the sweep, ascending")
+    ap.add_argument("--skip-stock-steps", action="store_true", help="skip phase A")
+    args = ap.parse_args()
+    P_VALUES = args.p
+
     OUT.mkdir(exist_ok=True)
     path = OUT / time.strftime("autotune_%Y%m%d_%H%M%S.json")
     log = {"started": time.strftime("%Y-%m-%d %H:%M:%S"), "steps": STEPS, "p_values": P_VALUES}
-    arm = RoArm(sys.argv[1] if len(sys.argv) > 1 else None)
+    arm = RoArm(args.arm)
     if "." in arm.target:
         raise SystemExit("Run over USB.")
     lab = None
@@ -292,7 +302,8 @@ def main():
         arm.reset_pid()
         lab = Lab(arm)
         say(f"Connected on {arm.target}; supply {arm.feedback()['v'] / 100:.2f} V")
-        log["A_steps_stock"] = lab.step_test("stock")
+        if not args.skip_stock_steps:
+            log["A_steps_stock"] = lab.step_test("stock")
         log["B_sweep"], chosen = lab.p_sweep()
         say(f"Highest stable P per joint: {chosen}")
         tuned, log["C_motion_check"] = lab.motion_check(chosen)
