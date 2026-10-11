@@ -21,17 +21,36 @@ The notebook is already set up for two (`CAMERAS = {"wrist": 0, "front": 1}`). O
 1. **Focus that never changes.** Autofocus hunting makes images differ between recording and running, which confuses the policy. Pick fixed-focus or manual-focus (M12 lens) cameras. Set the wrist camera's focus for roughly 5–20 cm.
 2. **Exposure and white balance you can lock.** Same reason. The author of a RoArm-M3 LeRobot plugin freezes these after connecting so "record and eval see the same images" ([lerobot_robot_roarm_m3](https://github.com/metrox-eth/lerobot_robot_roarm_m3)).
 3. **MJPG at 640×480, 30 fps.** Two cameras on USB 2.0 need compressed MJPG, which `roarm/camera.py` asks for. Frames are shrunk to 320×240 before saving, so capturing above 640×480 gains little.
-4. **Wide view on the wrist (~90–120°)**, so the electrode stays in frame as the gripper closes in.
+4. **A moderately wide view on the wrist (~90–100°).** That's wide enough to keep the fingertips and target in frame. Very wide lenses (120°+, fisheye) make a small electrode only a few pixels across.
 5. **Light and flexible.** Payload is only 200 g at 0.5 m. Use a small board camera (around 10–20 g) and a thin, flexible cable. Leave slack at every joint and strain-relieve the cable so it can't snag or drag the wrist.
 6. **Global shutter (nice to have)** stops motion blur and the "skew" rolling-shutter cameras show while the wrist moves.
 
 **Lighting matters as much as the camera.** Use a fixed desk lamp with diffuse light (electrodes can glare) and a matte background that contrasts with the electrodes. Record and run under the same light.
 
+## Wrist camera angle
+
+The stock bracket points the camera straight along the gripper. **Tilt it toward the fingertips instead**: aim the center of the image a few cm past the fingertips, so both fingertips sit in the bottom third of the frame. That's roughly 15–30° depending on the offset. Then the policy can see the final alignment and whether the electrode is actually between the jaws, while the front camera covers the approach. Print a wedge between the bracket and the arm, check it with `teach.preview`, and never change it after recording.
+
+## Screen-printed electrodes
+
+Assuming strips of about 34 × 10 mm and under 1 mm thick, at the notebook's 320 × 240 frames:
+
+| Camera | Distance | View width | Electrode in the image |
+|---|---|---|---|
+| Wrist, 90° | 10 cm | 20 cm | ~54 × 16 px |
+| Wrist, 120° | 10 cm | 35 cm | ~31 × 9 px |
+| Front, 70° | 40 cm | 56 cm | ~19 × 6 px |
+
+- **Wrist:** focus the M12 lens for 5–15 cm. Most cheap USB cameras ship focused far away.
+- **Front:** keep it 30–40 cm from the work area. If you train on a big GPU, raise `IMAGE_SIZE` to `(480, 640)`.
+- **Contrast:** use a dark matte mat under white/ceramic substrates, and diffuse light, because the silver and carbon traces glare.
+- **Presentation matters more than the camera:** a strip under 1 mm thick lying flat is hard to pinch. A slotted rack, a raised ledge with the connector end hanging over, or a stop to lean against makes picks far more reliable. Use the same setup for recording and running.
+
 ## Options
 
 | | Camera | Notes |
 |---|---|---|
-| **Wrist, cheap** | Small UVC USB board camera, M12 lens, 90–120°, MJPG | Generic "USB camera module" boards from ELP, Arducam, etc. Check the hole pattern against 21 × 13.5 mm M2, or print an adapter. |
+| **Wrist, cheap** | Small UVC USB board camera, M12 lens, ~90–100°, MJPG | Generic "USB camera module" boards from ELP, Arducam, etc. Check the hole pattern against 21 × 13.5 mm M2, or print an adapter. |
 | **Wrist, better** | [Arducam B0385](https://www.arducam.com/100fps-global-shutter-color-usb-camera-board-1mp-ov9782-uvc-webcam-module-with-low-distortion-m12-lens-without-microphones-for-computer-laptop-android-device-and-raspberry-pi-arducam.html): OV9782, colour **global shutter**, 1280×800, MJPG up to 100 fps, M12 lens, 38 × 38 mm | Stock lens is 70°; an M12 lens swap gets wider. Needs an adapter for the bracket. |
 | **Wrist, research-grade** | [Intel RealSense D405](https://www.generationrobots.com/en/403953-intel-realsense-depth-camera-d405.html): 42 × 42 × 23 mm, 60 g, global shutter, depth from 7 cm, roughly $340–440 | The wrist camera on ALOHA 2 ([paper](https://arxiv.org/pdf/2405.02292)). 60 g is a big share of this arm's payload, and ACT doesn't use depth by default, so it's overkill here. |
 | **Front** | Any good UVC webcam where autofocus can be turned off, e.g. Logitech C920/C922 | The original ALOHA used Logitech webcams. Mount it rigidly: if it moves between recording and running, the policy breaks. |
