@@ -89,6 +89,52 @@ def measured(arm):
     return np.array([fb["x"], fb["y"], fb["z"]]), fb["tit"]
 
 
+class GravityModel:
+    """Predicts how far the shoulder, elbow and wrist sag below their targets (rad).
+
+    Gravity's torque on a joint is proportional to the horizontal lever arm of the
+    weight beyond it, so each joint's sag is fitted as a linear function of the
+    horizontal distances from that joint to the elbow / wrist / tip. Add predict()
+    to the joint commands (feedforward) to cancel the sag. Fitted from poses
+    reached from above, so use it for poses reached from above.
+    """
+
+    def __init__(self, coef, residual=None):
+        self.coef = [np.asarray(c, float) for c in coef]
+        self.residual = residual or [0.0, 0.0, 0.0]
+
+    @staticmethod
+    def features(sew):
+        elbow, wrist, tip = K.points(*sew)
+        r = lambda p: p[0] / 100.0  # horizontal distance from the shoulder, per 100 mm
+        return [np.array([1.0, r(elbow), r(wrist)]),
+                np.array([1.0, r(wrist) - r(elbow)]),
+                np.array([1.0, r(tip) - r(wrist)])]
+
+    def predict(self, sew):
+        """Sag (rad) for shoulder, elbow, wrist at commanded angles `sew`."""
+        return np.array([c @ f for c, f in zip(self.coef, self.features(sew))])
+
+    @classmethod
+    def fit(cls, commanded, sag, ridge=1e-3):
+        """Least squares (lightly regularised) from commanded angles -> measured sag."""
+        feats = [cls.features(q) for q in commanded]
+        coef, residual = [], []
+        for j in range(3):
+            A, y = np.array([f[j] for f in feats]), np.asarray(sag)[:, j]
+            c = np.linalg.solve(A.T @ A + ridge * np.eye(A.shape[1]), A.T @ y)
+            coef.append(c)
+            residual.append(float(np.sqrt(np.mean((A @ c - y) ** 2))))
+        return cls(coef, residual)
+
+    def to_dict(self):
+        return {"coef": [c.tolist() for c in self.coef], "residual_rad": self.residual}
+
+    @classmethod
+    def from_dict(cls, d):
+        return cls(d["coef"], d.get("residual_rad"))
+
+
 class LandingOffset:
     """Learns how far the arm lands from where it's sent, so you can aim ahead.
 

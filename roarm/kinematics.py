@@ -6,6 +6,8 @@ Source: RoArm-M3_module.h / RoArm-M3_config.h in Waveshare's RoArm-M3_example.
 """
 import math
 
+import numpy as np
+
 L2A, L2B = 236.82, 30.00          # upper arm
 L3A, L3B = 144.49, 0.0            # forearm
 L4A, L4B = 171.67, 13.69          # wrist to gripper tip
@@ -53,6 +55,17 @@ def fk(base, shoulder, elbow, wrist):
     rc, zc = LE * math.cos(a), LE * math.sin(a)
     r = ra + rb + rc
     return r * math.cos(base), r * math.sin(base), za + zb + zc, elbow + shoulder + wrist - math.pi / 2
+
+
+def points(shoulder, elbow, wrist):
+    """(radial, z) of the elbow, wrist and tip in the arm's vertical plane,
+    measured from the shoulder pivot (mm). Used for gravity lever arms."""
+    elbow_pt = np.array([L2 * math.cos(math.pi / 2 - (shoulder + T2)), L2 * math.sin(math.pi / 2 - (shoulder + T2))])
+    a = math.pi / 2 - (elbow + shoulder + T3)
+    wrist_pt = elbow_pt + [L3 * math.cos(a), L3 * math.sin(a)]
+    b = math.pi / 2 - (elbow + shoulder + wrist + TE)
+    tip = wrist_pt + [LE * math.cos(b), LE * math.sin(b)]
+    return elbow_pt, wrist_pt, tip
 
 
 def limit_problems(x, y, z, pitch, margin=0.05):

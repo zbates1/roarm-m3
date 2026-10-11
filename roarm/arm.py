@@ -40,18 +40,25 @@ class _Serial:
         self.ser.open()
         time.sleep(0.2)
         self.ser.reset_input_buffer()
+        self.warnings = []  # firmware safety messages seen (overcurrent, voltage)
 
     def send(self, cmd):
         self.ser.write((json.dumps(cmd) + "\n").encode())
 
+    def _scan(self, text):
+        for line in text.splitlines():
+            if "overcurrent" in line or "voltage detected" in line or "voltage is too high" in line:
+                self.warnings.append(line.strip())
+
     def query(self, cmd, reply_type, timeout=1.0):
-        self.ser.reset_input_buffer()
+        self._scan(self.ser.read(self.ser.in_waiting).decode(errors="replace"))
         self.send(cmd)
         deadline = time.time() + timeout
         while time.time() < deadline:
             line = self.ser.readline().decode(errors="replace").strip()
             if line.startswith('{"T":%d' % reply_type):
-                return json.loads(line)
+                return json.loads(line, strict=False)
+            self._scan(line)
         raise TimeoutError(f"no T:{reply_type} reply on {self.ser.port}")
 
     def close(self):
