@@ -69,6 +69,7 @@ Joint limits: base ±3.14, shoulder ±1.57, elbow 0–3.14, wrist ±1.57, roll �
   - Some replies (`T:405`) contain bytes that aren't valid text, which makes Python's `websockets` drop the connection. Read frames as bytes (`recv(decode=False)`).
   - Readings take about 100–300 ms; ping alone averages ~100 ms, probably the ESP32's WiFi power saving, which only firmware can turn off. The notebook and the tests default to USB.
 - **USB:** set RTS and DTR low before opening the port, or the ESP32 resets. `arm.py` does this.
+- **Measured sag (2026-10-11, USB, `square_dips.py`, gripper straight down around x=180–200, z=−60):** the tip settles 2.5–4.2 mm below the commanded height, and the gripper pitch 0.9–1.3° past vertical. These come from the arm's own joint sensors, so they show how far the joints fall short of their targets, not flex or calibration error.
 - **Why the arm dips when a move starts:**
   - The servos hold position with a small sag under gravity.
   - Every `T:105` reading (the web app sends them constantly) overwrites the firmware's stored "last position" with the measured, sagged pose.
