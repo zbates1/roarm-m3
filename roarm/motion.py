@@ -58,7 +58,8 @@ def check_line(a, b, pitch, margin=0.05, samples=21):
 def go_to_pose(arm, xyz, pitch, roll, grip, rate, joint_speed=0.3):
     """Move to a tip pose by blending joint angles, which can't pass a limit.
 
-    Refuses if the blend would swing the tip more than 10 mm below the goal.
+    Refuses if the blend would swing the tip more than 10 mm below both the
+    start and the goal.
     """
     j = K.ik(*xyz, pitch)
     if j is None or K.limit_problems(*xyz, pitch):
@@ -66,7 +67,7 @@ def go_to_pose(arm, xyz, pitch, roll, grip, rate, joint_speed=0.3):
     q0 = arm.state().astype(float)
     q1 = np.array([j["base"], j["shoulder"], j["elbow"], j["wrist"], roll, grip])
     lowest = min(K.fk(*(q0 + (q1 - q0) * min_jerk(u))[:4])[2] for u in np.linspace(0, 1, 51))
-    if lowest < xyz[2] - 10:
+    if lowest < min(K.fk(*q0[:4])[2], xyz[2]) - 10:
         raise ValueError(f"getting there from here would swing the tip down to z={lowest:.0f} mm; "
                          "move the arm up first (e.g. {\"T\":100})")
     duration = max(2.0, np.max(np.abs(q1 - q0)) / joint_speed)
