@@ -1,0 +1,31 @@
+Tuned gains {'base': 80, 'shoulder': 80, 'elbow': 80, 'wrist': 80}; comparing 3 rounds x 4 corners x 2 modes
+round 1 corner 1 stock: off by 4.09 mm (x -1.80 y +2.73 z -2.45)
+round 1 corner 1 tuned: off by 0.31 mm (x -0.14 y +0.28 z -0.05)
+round 1 corner 2 tuned: off by 0.88 mm (x -0.36 y +0.20 z -0.77)
+round 1 corner 2 stock: off by 3.89 mm (x -1.06 y +3.19 z -1.97)
+round 1 corner 3 stock: off by 3.76 mm (x -1.56 y +3.24 z -1.09)
+round 1 corner 3 tuned: off by 0.96 mm (x -0.29 y +0.91 z -0.08)
+round 1 corner 4 tuned: off by 0.89 mm (x -0.66 y +0.31 z -0.51)
+round 1 corner 4 stock: off by 3.40 mm (x -0.86 y +3.06 z -1.23)
+round 2 corner 1 tuned: off by 0.74 mm (x -0.48 y +0.55 z +0.10)
+round 2 corner 1 stock: off by 4.09 mm (x -1.80 y +2.73 z -2.45)
+round 2 corner 2 stock: off by 3.78 mm (x -1.23 y +3.16 z -1.67)
+round 2 corner 2 tuned: off by 0.82 mm (x +0.54 y +0.58 z +0.21)
+round 2 corner 3 tuned: off by 0.64 mm (x +0.01 y +0.63 z -0.11)
+round 2 corner 3 stock: off by 3.66 mm (x -1.36 y +3.26 z -0.96)
+round 2 corner 4 stock: off by 4.11 mm (x -1.29 y +3.66 z -1.37)
+round 2 corner 4 tuned: off by 0.76 mm (x -0.25 y +0.61 z -0.37)
+round 3 corner 1 stock: off by 3.87 mm (x -1.01 y +2.75 z -2.53)
+round 3 corner 1 tuned: off by 0.77 mm (x +0.64 y +0.28 z +0.33)
+round 3 corner 2 tuned: off by 0.43 mm (x -0.11 y +0.23 z -0.35)
+round 3 corner 2 stock: off by 3.64 mm (x -1.75 y +2.54 z -1.94)
+round 3 corner 3 stock: off by 3.65 mm (x -1.47 y +3.25 z -0.78)
+round 3 corner 3 tuned: off by 0.66 mm (x -0.25 y +0.60 z -0.08)
+round 3 corner 4 tuned: off by 0.76 mm (x -0.25 y +0.61 z -0.37)
+round 3 corner 4 stock: off by 3.96 mm (x -0.87 y +3.67 z -1.23)
+
+stock: 12 dips, off by 3.83 mm on average (height -1.64, sideways 3.40); repeat spread 0.43 mm
+
+tuned: 12 dips, off by 0.72 mm on average (height -0.17, sideways 0.62); repeat spread 0.51 mm
+Saved D:\repos\roarm-m3\tmp_scripts\results\tuned_vs_stock_20261011_192325.json
+EXIT 0

@@ -54,6 +54,8 @@ To train on a faster PC (e.g. the 3090):
 
 - **Integral gain is unusable.** Even I=2 oscillates: the integral builds while friction holds the joint, it breaks free, overshoots, and repeats. P up to 80 was stable on every joint, at rest and after moves.
 - **Gravity feedforward.** Each loaded joint's sag is fitted as a linear function of its gravity lever arms (`motion.GravityModel`) and added to the joint commands. On poses not used for fitting, at P=80: 1.58 mm off without feedforward → **0.72 mm** with it (height error −1.37 → +0.07 mm). Stock control lands ~3 mm off.
+- **End to end** (`tmp_scripts/tuned_vs_stock.py`, 12 dips per mode on the corners of a 20 mm square, each after a 40 mm reposition): stock lands **3.83 mm** off on average (height −1.64, sideways 3.40), tuned **0.72 mm** (height −0.17, sideways 0.62). Repeatability is the same for both (~0.5 mm spread).
+- **Ramp the gains; don't jump them.** Jumping P from 16 to 80 right after a rise (when the shoulder lags most) tripped the firmware's 2 A overcurrent warning once. `tuning.apply_gains` now steps up by 16.
 - **To use it:**
   ```python
   from roarm import motion, tuning
