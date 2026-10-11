@@ -59,28 +59,50 @@ class _Serial:
 
 
 class _Wifi:
-    """Commands go over HTTP; the arm sends replies back on its WebSocket."""
+    """Commands go over HTTP; the arm sends replies back on its WebSocket.
+
+    Two firmware quirks shape this:
+    - After every queued command (moves included), the arm rebroadcasts its
+      *last* T:1051 report, so the socket fills with stale copies. A query
+      clears the backlog, then takes the last report to arrive once things
+      go quiet: the arm handles commands in order, so ours comes last.
+    - Some replies (e.g. T:405) contain bytes that aren't valid UTF-8, so
+      frames are read as bytes; decoding them as text would drop the link.
+    """
 
     def __init__(self, host):
         from websockets.sync.client import connect
 
         self.host = host
-        self.ws = connect(f"ws://{host}/ws", open_timeout=5, ping_interval=None)
+        self.ws = connect(f"ws://{host}/ws", open_timeout=5, ping_interval=None, legacy=True)
 
     def send(self, cmd):
         url = f"http://{self.host}/js?json=" + urllib.parse.quote(json.dumps(cmd))
         urllib.request.urlopen(url, timeout=2).read()
 
-    def query(self, cmd, reply_type, timeout=1.0):
-        self.send(cmd)
-        deadline = time.time() + timeout
-        while time.time() < deadline:
-            try:
-                msg = self.ws.recv(timeout=max(0.01, deadline - time.time()))
-            except TimeoutError:
-                break
-            if msg.startswith('{"T":%d' % reply_type):
-                return json.loads(msg)
+    def _recv(self, timeout):
+        try:
+            return self.ws.recv(timeout=timeout, decode=False).decode(errors="replace")
+        except TimeoutError:
+            return None
+
+    def query(self, cmd, reply_type, timeout=1.0, quiet=0.06, attempts=2):
+        # The arm's web server sometimes drops a broadcast, so ask again once.
+        prefix = '{"T":%d' % reply_type
+        for _ in range(attempts):
+            while self._recv(0) is not None:
+                pass
+            self.send(cmd)
+            reply, last, deadline = None, 0.0, time.time() + timeout
+            while time.time() < deadline:
+                wait = last + quiet - time.time() if reply else deadline - time.time()
+                if reply and wait <= 0:
+                    break
+                msg = self._recv(max(0.005, wait))
+                if msg and msg.startswith(prefix):
+                    reply, last = msg, time.time()
+            if reply is not None:
+                return json.loads(reply, strict=False)
         raise TimeoutError(f"no T:{reply_type} reply from {self.host}")
 
     def close(self):

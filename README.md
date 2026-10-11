@@ -63,7 +63,11 @@ Joint limits: base ±3.14, shoulder ±1.57, elbow 0–3.14, wrist ±1.57, roll �
 
 ## Things that weren't obvious
 
-- **Reading joints over WiFi:** an HTTP `{"T":105}` request returns only `{"ok":1}`. The actual reply arrives on the WebSocket at `ws://<ip>/ws`. Sending JSON *into* the WebSocket does nothing. Round trips are about 70 ms with spikes to 300 ms, so the notebook defaults to USB, which is steadier.
+- **Reading joints over WiFi:**
+  - An HTTP `{"T":105}` request returns only `{"ok":1}`. The actual reply arrives on the WebSocket at `ws://<ip>/ws`, whose handler ignores anything sent into it.
+  - After **every** queued command, moves included, the arm rebroadcasts its *last* position report. A script that streams moves and then reads will see stale positions unless it clears the backlog first. `arm.py` does that and takes the last report to arrive.
+  - Some replies (`T:405`) contain bytes that aren't valid text, which makes Python's `websockets` drop the connection. Read frames as bytes (`recv(decode=False)`).
+  - Readings take about 100–300 ms; ping alone averages ~100 ms, probably the ESP32's WiFi power saving, which only firmware can turn off. The notebook and the tests default to USB.
 - **USB:** set RTS and DTR low before opening the port, or the ESP32 resets. `arm.py` does this.
 - **Why the arm dips when a move starts:**
   - The servos hold position with a small sag under gravity.
