@@ -1,9 +1,9 @@
 {
  "gains": {
-  "base": 80,
-  "shoulder": 80,
-  "elbow": 80,
-  "wrist": 80
+  "base": 16,
+  "shoulder": 16,
+  "elbow": 16,
+  "wrist": 16
  },
  "gravity": {
   "coef": [
@@ -28,5 +28,6 @@
   ]
  },
  "source": "autotune_20261011_191004.json",
- "saved": "2026-10-11 19:16:35"
+ "saved": "2026-10-11 19:16:35",
+ "note": "gravity model below was fitted at P=80 (vibrated in motion); refit at stock gains with tmp_scripts/friction_tune.py"
 }
