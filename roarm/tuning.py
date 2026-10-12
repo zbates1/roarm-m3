@@ -14,7 +14,7 @@ import json
 import time
 from pathlib import Path
 
-from .motion import GravityModel
+from .motion import Compensation, GravityModel
 
 PATH = Path(__file__).with_name("tuning.json")
 JOINT_IDS = {"base": 1, "shoulder": 2, "elbow": 3, "wrist": 4}
@@ -25,11 +25,27 @@ def load(path=PATH):
     return d["gains"], GravityModel.from_dict(d["gravity"])
 
 
-def save(gains, gravity, source, path=PATH):
-    Path(path).write_text(json.dumps({
-        "gains": gains, "gravity": gravity.to_dict(), "source": source,
-        "saved": time.strftime("%Y-%m-%d %H:%M:%S"),
-    }, indent=1))
+def load_compensation(path=PATH):
+    """The gravity + friction model (motion.Compensation), or None if not fitted yet."""
+    d = json.loads(Path(path).read_text())
+    return Compensation.from_dict(d["compensation"]) if "compensation" in d else None
+
+
+def save(gains, gravity, source, path=PATH, compensation=None):
+    d = {"gains": gains, "gravity": gravity.to_dict(), "source": source,
+         "saved": time.strftime("%Y-%m-%d %H:%M:%S")}
+    if compensation is not None:
+        d["compensation"] = compensation.to_dict()
+    elif Path(path).exists() and "compensation" in json.loads(Path(path).read_text()):
+        d["compensation"] = json.loads(Path(path).read_text())["compensation"]
+    Path(path).write_text(json.dumps(d, indent=1))
+
+
+def save_compensation(compensation, source, path=PATH):
+    d = json.loads(Path(path).read_text())
+    d["compensation"] = compensation.to_dict()
+    d["compensation_source"] = source
+    Path(path).write_text(json.dumps(d, indent=1))
 
 
 def apply_gains(arm, gains, start=16, step=16, dwell=0.25):

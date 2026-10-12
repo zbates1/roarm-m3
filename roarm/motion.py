@@ -157,6 +157,99 @@ class GravityModel:
         return cls(d["coef"], d.get("residual_rad"))
 
 
+COUNT = 2 * math.pi / 4096  # one encoder step (rad)
+
+
+class Compensation:
+    """Gravity (depends on pose) + Coulomb friction (depends on direction of travel).
+
+    For each of base, shoulder, elbow, wrist, the shortfall (commanded minus
+    measured, rad) is modelled as
+        gravity lever-arm terms  +  direction * friction
+    where direction is +1 / -1 for the way the joint last moved. Friction makes a
+    joint stop short in its direction of travel; adding the predicted shortfall to
+    the command makes it land on target whichever way it arrives.
+    """
+
+    NAMES = ("base", "shoulder", "elbow", "wrist")
+
+    def __init__(self, coef, residual=None):
+        self.coef = {n: np.asarray(coef[n], float) for n in self.NAMES}
+        self.residual = residual or {n: 0.0 for n in self.NAMES}
+
+    @staticmethod
+    def features(q4, s4):
+        _, s, e, w = q4
+        elbow, wrist, tip = K.points(s, e, w)
+        r = lambda p: p[0] / 100.0
+        return {"base": np.array([1.0, s4[0]]),
+                "shoulder": np.array([1.0, r(elbow), r(wrist), s4[1]]),
+                "elbow": np.array([1.0, r(wrist) - r(elbow), s4[2]]),
+                "wrist": np.array([1.0, r(tip) - r(wrist), s4[3]])}
+
+    def predict(self, q4, s4):
+        f = self.features(q4, s4)
+        return np.array([self.coef[n] @ f[n] for n in self.NAMES])
+
+    def friction_counts(self):
+        return {n: round(float(self.coef[n][-1] / COUNT), 2) for n in self.NAMES}
+
+    @classmethod
+    def fit(cls, commanded, directions, shortfall, ridge=1e-3):
+        feats = [cls.features(q, s) for q, s in zip(commanded, directions)]
+        coef, residual = {}, {}
+        for j, n in enumerate(cls.NAMES):
+            A, y = np.array([f[n] for f in feats]), np.asarray(shortfall)[:, j]
+            c = np.linalg.solve(A.T @ A + ridge * np.eye(A.shape[1]), A.T @ y)
+            coef[n], residual[n] = c, float(np.sqrt(np.mean((A @ c - y) ** 2)))
+        return cls(coef, residual)
+
+    def to_dict(self):
+        return {"coef": {n: c.tolist() for n, c in self.coef.items()}, "residual_rad": self.residual}
+
+    @classmethod
+    def from_dict(cls, d):
+        return cls(d["coef"], d.get("residual_rad"))
+
+
+class Mover:
+    """Straight-line tip moves with gravity + friction feedforward.
+
+    Remembers which way each joint last moved (that picks the sign of its
+    friction term). When a joint reverses, the term is blended over the first
+    20 % of the move instead of jumping.
+    """
+
+    def __init__(self, arm, comp, pitch, roll, grip, rate):
+        self.arm, self.comp, self.pitch, self.roll, self.grip, self.rate = arm, comp, pitch, roll, grip, rate
+        self.dir = np.zeros(4)
+
+    def command(self, p, s4):
+        q = joints_for(p, self.pitch, self.roll, self.grip)
+        if self.comp is not None:
+            q[:4] += self.comp.predict(q[:4], s4)
+        return q
+
+    def move(self, a, b, speed=15.0):
+        problems = check_line(a, b, self.pitch)
+        if problems:
+            raise ValueError(problems[0])
+        a, b = np.asarray(a, float), np.asarray(b, float)
+        d = joints_for(b, self.pitch, self.roll, self.grip)[:4] - joints_for(a, self.pitch, self.roll, self.grip)[:4]
+        old, new = self.dir.copy(), np.where(np.abs(d) > 0.5 * COUNT, np.sign(d), self.dir)
+        duration = max(1.0, np.linalg.norm(b - a) / speed)
+        t0 = time.perf_counter()
+        while True:
+            tick = time.perf_counter()
+            u = min(1.0, (tick - t0) / duration)
+            s4 = old + (new - old) * min(1.0, u / 0.2)
+            self.arm.move(self.command(a + (b - a) * min_jerk(u), s4), spd=0, acc=0)
+            if u >= 1.0:
+                break
+            time.sleep(max(0.0, 1 / self.rate - (time.perf_counter() - tick)))
+        self.dir = new
+
+
 class LandingOffset:
     """Learns how far the arm lands from where it's sent, so you can aim ahead.
 
