@@ -41,6 +41,8 @@ To train on a faster PC (e.g. the 3090):
 
 ## Control tuning (2026-10-11)
 
+> **Don't use P=80.** It looked stable while holding still and gave the accuracy numbers below, but when you watch it move (streamed targets with `spd=0, acc=0`) the arm is jerky and vibrates hard. `tuning.apply_gains` now refuses P above 32 unless `allow_high=True`. The tests below couldn't detect it: they only checked jitter at rest, and reading the joints ~20 times a second is too slow to see vibration.
+
 `tmp_scripts/autotune.py` ran unattended experiments around the ready pose (x=180, z=−40, gripper down); results and logs are in `tmp_scripts/results/`. What it found:
 
 - **Friction bands** (how far a joint's resting point depends on which way it last moved), in encoder steps (1 step = 0.088°):

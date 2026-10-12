@@ -48,14 +48,24 @@ def save_compensation(compensation, source, path=PATH):
     Path(path).write_text(json.dumps(d, indent=1))
 
 
-def apply_gains(arm, gains, start=16, step=16, dwell=0.25):
+MAX_SAFE_P = 32  # servo factory default; P=80 made the arm vibrate violently while moving
+
+
+def apply_gains(arm, gains, start=16, step=16, dwell=0.25, allow_high=False):
     """Ramp each joint's P from `start` up to its tuned value in steps.
 
     Jumping straight from 16 to 80 while a joint is holding with a lag of a few
     dozen counts multiplies its drive ~5x at once; that tripped the firmware's
     2 A overcurrent warning once. Ramping lets each joint close its lag first.
+
+    Refuses P above MAX_SAFE_P unless allow_high=True: P=80 looked stable while
+    holding still, but with streamed targets (spd=0, acc=0) the arm moved jerkily
+    and vibrated hard on the way down.
     """
     top = max(gains.values())
+    if top > MAX_SAFE_P and not allow_high:
+        raise ValueError(f"P={top} is above {MAX_SAFE_P}; it made the arm vibrate while moving. "
+                         "Pass allow_high=True only for supervised tests.")
     for p in list(range(start + step, top, step)) + [top]:
         for name, target in gains.items():
             arm.set_pid(JOINT_IDS[name], min(p, target), 0)

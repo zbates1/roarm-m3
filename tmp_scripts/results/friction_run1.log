@@ -1,0 +1,12 @@
+20:00:55 Data: landing on each grid pose from above-left and from below-right (plain commands)
+20:01:02   (160, 0.0, -55) from above: shortfall (counts) base  -2.0  shoulder  -2.6  elbow  -3.0  wrist  +1.5
+20:01:07   (160, 0.0, -55) from below: shortfall (counts) base  +2.0  shoulder -11.6  elbow  -3.0  wrist  +1.5
+20:01:13   (160, 0.0, -35) from above: shortfall (counts) base  -2.0  shoulder  -3.7  elbow  -2.9  wrist  +0.5
+20:01:18   (160, 0.0, -35) from below: shortfall (counts) base  +2.0  shoulder -10.7  elbow  -2.9  wrist  +2.5
+20:01:25   (160, 0.0, -15) from above: shortfall (counts) base  -2.0  shoulder  -3.5  elbow  -1.8  wrist  +3.2
+20:01:30   (160, 0.0, -15) from below: shortfall (counts) base  +2.0  shoulder -13.5  elbow  -3.8  wrist  +3.2
+20:01:37   (185, 0.0, -55) from above: shortfall (counts) base  -2.0  shoulder  -3.8  elbow  -1.4  wrist  +1.3
+20:01:42   (185, 0.0, -55) from below: shortfall (counts) base  +2.0  shoulder -11.8  elbow  -4.4  wrist  +2.3
+20:01:48   (185, 0.0, -35) from above: shortfall (counts) base  -2.0  shoulder  -3.6  elbow  -2.0  wrist  +0.7
+20:01:53   (185, 0.0, -35) from below: shortfall (counts) base  +2.0  shoulder -11.6  elbow  -3.0  wrist  +2.7
+20:01:59   (185, 0.0, -15) from above: shortfall (counts) base  -2.0  shoulder  -3.5  elbow  -2.2  wrist  +1.6
