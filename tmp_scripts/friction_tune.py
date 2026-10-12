@@ -4,17 +4,18 @@ ASSUMES THE SPACE AROUND THE READY POSE IS CLEAR (x 150-245, y +-35, z -70..0 mm
 Stock gains because higher P made motion rough (smooth_test.py ratings).
 
 1. Data: plain commands (no feedforward). Land on 12 grid poses twice, once
-   arriving from above-left and once from below-right, so every joint arrives
-   from opposite directions. Record each joint's shortfall.
-2. Fit two models from that data:
+   arriving from above-left and once from below-right (25 mm approaches, so each
+   joint fully breaks free of friction), so every joint arrives from opposite
+   directions. Record each joint's shortfall.
+2. Fit three models from that data:
    gravity-only (GravityModel, from the arrivals from above, as before)
    gravity + friction (Compensation: lever-arm terms + direction * friction)
-3. Check on 5 other poses, arriving from above and from below:
-   plain vs gravity-only vs gravity + friction.
+   gravity + load-scaled friction (friction also grows with the lever arm)
+3. Check on 5 other poses, arriving from above and from below, all three.
 4. Rise test: 20 mm straight up at x=190, the move that stops ~13 mm short.
 
-Saves both models (and stock gains) to roarm/tuning.json only if gravity +
-friction beats gravity-only on arrivals from below without getting worse from
+Saves the better friction model (and stock gains) to roarm/tuning.json only if it
+beats gravity-only on arrivals from below without getting worse from
 above. Stops on firmware warnings, a load over 85 %, supply outside 10.5-13 V,
 or a motor turning off. Results: tmp_scripts/results/friction_<time>.json.
 
@@ -36,9 +37,11 @@ from roarm.arm import RoArm
 PITCH = math.pi / 2
 COUNT = M.COUNT
 START = np.array([190.0, 0.0, -20.0])
-GRID = [(x, 0.0, z) for x in (160, 185, 210, 235) for z in (-55, -35, -15)]
-CHECK = [(175, 25, -45), (225, -25, -30), (200, 30, -20), (170, -20, -50), (215, 15, -40)]
-APPROACH = {"above": np.array([0.0, 8.0, 12.0]), "below": np.array([0.0, -8.0, -12.0])}
+GRID = [(x, 0.0, z) for x in (160, 185, 210, 235) for z in (-45, -30, -15)]
+CHECK = [(175, 25, -45), (225, -25, -30), (200, 30, -20), (170, -20, -40), (215, 15, -35)]
+# 25 mm approaches: at stock gains the shoulder's friction band is ~9 mm at the tip, so a
+# shorter approach may arrive before the joint has fully broken free of friction.
+APPROACH = {"above": np.array([0.0, 10.0, 25.0]), "below": np.array([0.0, -10.0, -25.0])}
 RISE = (np.array([190.0, 0.0, -60.0]), np.array([190.0, 0.0, -40.0]))
 OUT = Path(__file__).resolve().parent / "results"
 
@@ -56,6 +59,7 @@ class Rig:
         fb = self.check(arm.feedback(), arm)
         self.arm, self.rate, self.roll, self.grip = arm, M.rate_for(arm), fb["r"], fb["g"]
         self.gravity, self.mode, self.here = gravity, "plain", None
+        self.comps = {}
         self.mover = M.Mover(arm, None, PITCH, self.roll, self.grip, self.rate)
 
     @staticmethod
@@ -78,8 +82,10 @@ class Rig:
 
     def command(self, p, mode=None):
         mode = mode or self.mode
-        if mode == "comp":
-            return self.mover.command(p, self.mover.dir)
+        if mode in self.comps:
+            q = M.joints_for(p, PITCH, self.roll, self.grip)
+            q[:4] += self.comps[mode].predict(q[:4], self.mover.dir)
+            return q
         return M.joints_for(p, PITCH, self.roll, self.grip, self.gravity if mode == "gravity" else None)
 
     def set_mode(self, mode):
@@ -88,11 +94,12 @@ class Rig:
             M.stream(lambda q: self.arm.move(q, spd=0, acc=0),
                      self.command(self.here), self.command(self.here, mode), 0.5, self.rate)
             self.mode = mode
+            self.mover.comp = self.comps.get(mode)
             time.sleep(0.3)
             self.measure()
 
     def move(self, a, b):
-        if self.mode == "comp":
+        if self.mode in self.comps:
             self.mover.move(a, b)
         else:
             M.move_tcp_joints(self.arm, a, b, PITCH, self.roll, self.grip, self.rate,
@@ -153,17 +160,20 @@ def main():
                     f"shoulder {E[-1][1] / COUNT:+5.1f}  elbow {E[-1][2] / COUNT:+5.1f}  wrist {E[-1][3] / COUNT:+5.1f}")
         Q, D, E = np.array(Q), np.array(D), np.array(E)
         comp = M.Compensation.fit(Q, D, E)
+        comp_load = M.Compensation.fit(Q, D, E, load_friction=True)
         above = np.array([a == "above" for a in A])
         gravity = M.GravityModel.fit(Q[above][:, 1:4], E[above][:, 1:4])
         log["data"] = {"commanded": Q.tolist(), "directions": D.tolist(), "shortfall": E.tolist(), "approach": A}
         log["model"] = comp.to_dict()
+        log["model_load"] = comp_load.to_dict()
         log["gravity_model"] = gravity.to_dict()
         say(f"Friction per joint (counts): {comp.friction_counts()}")
         say(f"Fit residual (counts): { {n: round(r / COUNT, 2) for n, r in comp.residual.items()} }")
-        rig.gravity, rig.mover.comp = gravity, comp
+        say(f"Load-scaled friction fit residual (counts): { {n: round(r / COUNT, 2) for n, r in comp_load.residual.items()} }")
+        rig.gravity, rig.comps = gravity, {"comp": comp, "compL": comp_load}
 
-        modes = ["plain", "gravity", "comp"]
-        say("Check on other poses: plain vs gravity-only vs gravity + friction, from above and below")
+        modes = ["gravity", "comp", "compL"]
+        say("Check on other poses: gravity-only vs +friction vs +load-scaled friction, from above and below")
         rows = []
         for i, pose in enumerate(CHECK):
             for approach in ("above", "below"):
@@ -173,9 +183,9 @@ def main():
                     _, _, _, tip = rig.land(pose, approach)
                     err = tip - pose
                     row[mode] = {"err_mm": err.round(2).tolist(), "dist_mm": round(float(np.linalg.norm(err)), 2)}
-                say(f"  {pose} from {approach:5s}: plain {row['plain']['dist_mm']:.2f}  gravity-only "
-                    f"{row['gravity']['dist_mm']:.2f}  +friction {row['comp']['dist_mm']:.2f} mm "
-                    f"(heights {row['plain']['err_mm'][2]:+.2f} / {row['gravity']['err_mm'][2]:+.2f} / {row['comp']['err_mm'][2]:+.2f})")
+                say(f"  {pose} from {approach:5s}: gravity-only {row['gravity']['dist_mm']:.2f}  +friction "
+                    f"{row['comp']['dist_mm']:.2f}  +load-scaled {row['compL']['dist_mm']:.2f} mm "
+                    f"(heights {row['gravity']['err_mm'][2]:+.2f} / {row['comp']['err_mm'][2]:+.2f} / {row['compL']['err_mm'][2]:+.2f})")
                 rows.append(row)
         log["check"] = rows
 
@@ -201,10 +211,13 @@ def main():
             summary[f"{mode}_rise"] = round(float(np.mean([np.linalg.norm(r["err_mm"]) for r in rise if r["mode"] == mode])), 2)
         log["summary"] = summary
         say(f"Average distance off (mm): {summary}")
-        better = (summary["comp_below"] < summary["gravity_below"] and summary["comp_above"] <= summary["gravity_above"] + 0.2)
+        score = {m: summary[f"{m}_above"] + summary[f"{m}_below"] + summary[f"{m}_rise"] for m in ("comp", "compL")}
+        best = min(score, key=score.get)
+        better = (summary[f"{best}_below"] < summary["gravity_below"] and summary[f"{best}_above"] <= summary["gravity_above"] + 0.2)
+        log["best"] = best
         if better:
-            tuning.save(gains, gravity, source=path.name, compensation=comp)
-            say(f"Gravity + friction helps; saved it (with stock gains) to {tuning.PATH}")
+            tuning.save(gains, gravity, source=path.name, compensation=rig.comps[best])
+            say(f"Best: {'load-scaled friction' if best == 'compL' else 'constant friction'}; saved it (with stock gains) to {tuning.PATH}")
         else:
             say("Gravity + friction didn't clearly beat gravity-only; tuning.json left unchanged")
         log["saved"] = better

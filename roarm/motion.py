@@ -173,43 +173,55 @@ class Compensation:
 
     NAMES = ("base", "shoulder", "elbow", "wrist")
 
-    def __init__(self, coef, residual=None):
+    def __init__(self, coef, residual=None, load_friction=False):
         self.coef = {n: np.asarray(coef[n], float) for n in self.NAMES}
         self.residual = residual or {n: 0.0 for n in self.NAMES}
+        self.load_friction = load_friction
 
     @staticmethod
-    def features(q4, s4):
+    def features(q4, s4, load_friction=False):
+        """With load_friction, friction also scales with the joint's gravity lever
+        arm (gear friction grows with load)."""
         _, s, e, w = q4
         elbow, wrist, tip = K.points(s, e, w)
         r = lambda p: p[0] / 100.0
-        return {"base": np.array([1.0, s4[0]]),
-                "shoulder": np.array([1.0, r(elbow), r(wrist), s4[1]]),
-                "elbow": np.array([1.0, r(wrist) - r(elbow), s4[2]]),
-                "wrist": np.array([1.0, r(tip) - r(wrist), s4[3]])}
+        re, rw, rt = r(elbow), r(wrist), r(tip)
+        f = {"base": [1.0, s4[0]],
+             "shoulder": [1.0, re, rw, s4[1]],
+             "elbow": [1.0, rw - re, s4[2]],
+             "wrist": [1.0, rt - rw, s4[3]]}
+        if load_friction:
+            f["shoulder"] += [s4[1] * re, s4[1] * rw]
+            f["elbow"] += [s4[2] * (rw - re)]
+            f["wrist"] += [s4[3] * (rt - rw)]
+        return {n: np.array(v) for n, v in f.items()}
 
     def predict(self, q4, s4):
-        f = self.features(q4, s4)
+        f = self.features(q4, s4, self.load_friction)
         return np.array([self.coef[n] @ f[n] for n in self.NAMES])
 
     def friction_counts(self):
-        return {n: round(float(self.coef[n][-1] / COUNT), 2) for n in self.NAMES}
+        """Friction term (counts) at zero lever arm; with load_friction it also grows with load."""
+        idx = {"base": 1, "shoulder": 3, "elbow": 2, "wrist": 2}
+        return {n: round(float(self.coef[n][idx[n]] / COUNT), 2) for n in self.NAMES}
 
     @classmethod
-    def fit(cls, commanded, directions, shortfall, ridge=1e-3):
-        feats = [cls.features(q, s) for q, s in zip(commanded, directions)]
+    def fit(cls, commanded, directions, shortfall, ridge=1e-3, load_friction=False):
+        feats = [cls.features(q, s, load_friction) for q, s in zip(commanded, directions)]
         coef, residual = {}, {}
         for j, n in enumerate(cls.NAMES):
             A, y = np.array([f[n] for f in feats]), np.asarray(shortfall)[:, j]
             c = np.linalg.solve(A.T @ A + ridge * np.eye(A.shape[1]), A.T @ y)
             coef[n], residual[n] = c, float(np.sqrt(np.mean((A @ c - y) ** 2)))
-        return cls(coef, residual)
+        return cls(coef, residual, load_friction)
 
     def to_dict(self):
-        return {"coef": {n: c.tolist() for n, c in self.coef.items()}, "residual_rad": self.residual}
+        return {"coef": {n: c.tolist() for n, c in self.coef.items()}, "residual_rad": self.residual,
+                "load_friction": self.load_friction}
 
     @classmethod
     def from_dict(cls, d):
-        return cls(d["coef"], d.get("residual_rad"))
+        return cls(d["coef"], d.get("residual_rad"), d.get("load_friction", False))
 
 
 class Mover:
