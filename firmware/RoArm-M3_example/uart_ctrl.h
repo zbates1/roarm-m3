@@ -13,6 +13,9 @@ void jsonCmdReceiveHandler(){
 												servoRegRead(jsonCmdReceive["id"], jsonCmdReceive["addr"],
 												             jsonCmdReceive["len"] | 1);
 												break;
+	case CMD_TELEMETRY:
+												telemetryConfig(jsonCmdReceive["cmd"] | 0);
+												break;
 	case CMD_SERVO_REG_WRITE:
 												servoRegWrite(jsonCmdReceive["id"], jsonCmdReceive["addr"],
 												              jsonCmdReceive["len"] | 1, jsonCmdReceive["val"] | -1);

@@ -32,6 +32,9 @@ JsonDocument jsonFeedback;
 // roarm-m3 addition: servo register read / whitelisted write (T:116, T:117).
 #include "servo_regs.h"
 
+// roarm-m3 addition: compact high-rate telemetry (T:118).
+#include "telemetry.h"
+
 // functions for editing the files in flash.
 #include "files_ctrl.h"
 
@@ -203,6 +206,7 @@ void loop() {
   }
 
   RoArmM3_getPosByServoFeedback();
+  telemetryTick();  // roarm-m3 addition
   Stall_detection();
   oledInfoUpdate();
   pushTelemetry();

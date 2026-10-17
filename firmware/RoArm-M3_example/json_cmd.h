@@ -119,6 +119,10 @@
 // {"T":117,"id":12,"addr":22,"len":1,"val":40}
 #define CMD_SERVO_REG_WRITE 117
 
+// roarm-m3 addition: compact telemetry stream on/off (see telemetry.h).
+// {"T":118,"cmd":1}
+#define CMD_TELEMETRY 118
+
 // switch off.
 // {"T":115}
 #define CMD_SWITCH_OFF 115
