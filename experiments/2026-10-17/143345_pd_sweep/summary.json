@@ -1,0 +1,119 @@
+[
+ {
+  "trial": 0,
+  "P": 16,
+  "D": 32,
+  "rated_by_eye": "smooth (4-5)",
+  "aborted": null,
+  "moves": {
+   "down": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.352,
+     "elbow": 0.5,
+     "wrist": 0.474
+    },
+    "roughness_max": 0.5,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -2.56,
+    "radial_during_max_mm": 1.31,
+    "sideways_during_maxabs_mm": 0.83,
+    "rest_radial_mm": -0.99,
+    "rest_sideways_mm": 0.82,
+    "rest_vertical_mm": -2.53,
+    "max_load": {
+     "shoulder": 60,
+     "elbow": 36,
+     "wrist": 60
+    },
+    "samples": 224
+   },
+   "up": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.165,
+     "elbow": 0.212,
+     "wrist": 0.34
+    },
+    "roughness_max": 0.34,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -9.28,
+    "radial_during_max_mm": -0.99,
+    "sideways_during_maxabs_mm": 0.82,
+    "rest_radial_mm": -8.38,
+    "rest_sideways_mm": 0.79,
+    "rest_vertical_mm": -14.36,
+    "max_load": {
+     "shoulder": 204,
+     "elbow": 100,
+     "wrist": 68
+    },
+    "samples": 225
+   },
+   "aside": {
+    "roughness_counts": {
+     "base": 0.273,
+     "shoulder": 0.0,
+     "elbow": 0.162,
+     "wrist": 0.142
+    },
+    "roughness_max": 0.273,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -9.63,
+    "radial_during_max_mm": -7.53,
+    "sideways_during_maxabs_mm": 6.52,
+    "rest_radial_mm": -8.05,
+    "rest_sideways_mm": -4.19,
+    "rest_vertical_mm": -12.99,
+    "max_load": {
+     "shoulder": 192,
+     "elbow": 96,
+     "wrist": 52
+    },
+    "samples": 257
+   },
+   "back": {
+    "roughness_counts": {
+     "base": 0.251,
+     "shoulder": 0.0,
+     "elbow": 0.0,
+     "wrist": 0.0
+    },
+    "roughness_max": 0.251,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -8.05,
+    "radial_during_max_mm": -5.56,
+    "sideways_during_maxabs_mm": 6.42,
+    "rest_radial_mm": -5.56,
+    "rest_sideways_mm": 4.01,
+    "rest_vertical_mm": -12.99,
+    "max_load": {
+     "shoulder": 196,
+     "elbow": 80,
+     "wrist": 32
+    },
+    "samples": 286
+   }
+  }
+ }
+]

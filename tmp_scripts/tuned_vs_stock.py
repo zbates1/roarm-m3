@@ -21,6 +21,7 @@ from pathlib import Path
 
 import numpy as np
 
+from roarm import experiments
 from roarm import kinematics as K
 from roarm import motion as M
 from roarm import tuning
@@ -31,7 +32,7 @@ PITCH = math.pi / 2
 DIP = 20.0
 ASIDE = np.array([0.0, 40.0, 0.0])
 CORNERS = [READY + [0, 0, -DIP] + [f, l, 0] for f, l in ((0, 0), (0, 20), (20, 20), (20, 0))]
-OUT = Path(__file__).resolve().parent / "results"
+OUT = experiments.day_dir()  # experiments/<today>/
 
 
 def tip(arm):

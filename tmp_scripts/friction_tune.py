@@ -29,6 +29,7 @@ from pathlib import Path
 
 import numpy as np
 
+from roarm import experiments
 from roarm import kinematics as K
 from roarm import motion as M
 from roarm import tuning
@@ -43,7 +44,7 @@ CHECK = [(175, 25, -45), (225, -25, -30), (200, 30, -20), (170, -20, -40), (215,
 # shorter approach may arrive before the joint has fully broken free of friction.
 APPROACH = {"above": np.array([0.0, 10.0, 25.0]), "below": np.array([0.0, -10.0, -25.0])}
 RISE = (np.array([190.0, 0.0, -60.0]), np.array([190.0, 0.0, -40.0]))
-OUT = Path(__file__).resolve().parent / "results"
+OUT = experiments.day_dir()  # experiments/<today>/
 
 
 class Abort(Exception):

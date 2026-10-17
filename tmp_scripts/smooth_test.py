@@ -24,6 +24,7 @@ from pathlib import Path
 
 import numpy as np
 
+from roarm import experiments
 from roarm import kinematics as K
 from roarm import motion as M
 from roarm import tuning
@@ -34,7 +35,7 @@ PITCH = math.pi / 2
 P_LEVELS = [16, 24, 32, 40]
 ACC_LEVELS = [0, 20, 8]
 SPEED = 15.0     # mm/s average, same as the other tests
-OUT = Path(__file__).resolve().parent / "results"
+OUT = experiments.day_dir()  # experiments/<today>/
 
 
 def main():

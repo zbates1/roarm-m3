@@ -21,6 +21,7 @@ from pathlib import Path
 
 import numpy as np
 
+from roarm import experiments
 from roarm import kinematics as K
 from roarm import motion as M
 from roarm import tuning
@@ -32,7 +33,7 @@ PITCH = math.pi / 2
 MOVE_TIME = 1.5      # s for each 20 mm move (same as the dip tests)
 HOLD = 1.0           # s of readings after each move
 DIPS = 2             # per mode
-OUT = Path(__file__).resolve().parent / "results"
+OUT = experiments.day_dir()  # experiments/<today>/
 
 
 def components(cmd, meas):

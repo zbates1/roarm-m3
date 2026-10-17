@@ -29,6 +29,7 @@ from pathlib import Path
 
 import numpy as np
 
+from roarm import experiments
 from roarm import kinematics as K
 from roarm import motion as M
 from roarm import tuning
@@ -44,7 +45,7 @@ OSC_STD, OSC_PTP = 0.8, 3                  # counts; holding still above either 
 GRID = [(x, 0.0, z) for x in (160, 185, 210, 235) for z in (-65, -40, -15)]
 CHECK = [(175, 25, -55), (225, -25, -30), (200, 30, -20), (170, -20, -60), (215, 15, -50)]
 ABOVE = 15.0                               # mm: every pose is reached by descending this far
-OUT = Path(__file__).resolve().parent / "results"
+OUT = experiments.day_dir()  # experiments/<today>/
 
 
 class Abort(Exception):

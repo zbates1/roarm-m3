@@ -20,6 +20,7 @@ from pathlib import Path
 
 import numpy as np
 
+from roarm import experiments
 from roarm import kinematics as K
 from roarm import motion as M
 from roarm.arm import RoArm
@@ -30,7 +31,7 @@ SPEED = 15.0
 IDS = [11, 12, 13, 14, 15]          # base, shoulder x2, elbow, wrist
 STOCK = {"P": 16, "D": 32}
 REG = {"P": 21, "D": 22}
-OUT = Path(__file__).resolve().parent / "results"
+OUT = experiments.day_dir()  # experiments/<today>/
 
 
 def main():

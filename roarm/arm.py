@@ -27,41 +27,83 @@ _FEEDBACK_KEYS = ("b", "s", "e", "t", "r", "g")
 
 
 class _Serial:
+    """USB serial link. A background thread reads every line the arm sends and
+    sorts it: JSON replies (for query), telemetry lines starting with "@"
+    (roarm-m3 firmware T:118), and firmware safety warnings."""
+
     def __init__(self, port):
+        import queue
+        import threading
+
         import serial
 
         self.ser = serial.Serial()
         self.ser.port = port
         self.ser.baudrate = 115200
-        self.ser.timeout = 0.5
+        self.ser.timeout = 0.05
         # Keep RTS/DTR low before opening, or the ESP32 resets.
         self.ser.rts = False
         self.ser.dtr = False
         self.ser.open()
         time.sleep(0.2)
         self.ser.reset_input_buffer()
-        self.warnings = []  # firmware safety messages seen (overcurrent, voltage)
+        self.warnings = []      # firmware safety messages seen (overcurrent, voltage)
+        self.telemetry = None   # list of (host time, line) while recording
+        self.replies = queue.Queue()
+        self._write_lock = threading.Lock()
+        self._running = True
+        self._reader = threading.Thread(target=self._read_loop, daemon=True)
+        self._reader.start()
+
+    def _read_loop(self):
+        buf = b""
+        while self._running:
+            try:
+                chunk = self.ser.read(self.ser.in_waiting or 1)
+            except Exception:
+                break
+            if not chunk:
+                continue
+            buf += chunk
+            while b"\n" in buf:
+                raw, buf = buf.split(b"\n", 1)
+                line = raw.decode(errors="replace").strip()
+                if not line:
+                    continue
+                if line[0] == "@":
+                    if self.telemetry is not None:
+                        self.telemetry.append((time.perf_counter(), line))
+                elif line[0] == "{":
+                    self.replies.put(line)
+                elif "overcurrent" in line or "voltage detected" in line or "voltage is too high" in line:
+                    self.warnings.append(line)
 
     def send(self, cmd):
-        self.ser.write((json.dumps(cmd) + "\n").encode())
-
-    def _scan(self, text):
-        for line in text.splitlines():
-            if "overcurrent" in line or "voltage detected" in line or "voltage is too high" in line:
-                self.warnings.append(line.strip())
+        with self._write_lock:
+            self.ser.write((json.dumps(cmd) + "\n").encode())
 
     def query(self, cmd, reply_type, timeout=1.0):
-        self._scan(self.ser.read(self.ser.in_waiting).decode(errors="replace"))
+        import queue
+
+        while True:  # drop replies nobody asked for
+            try:
+                self.replies.get_nowait()
+            except queue.Empty:
+                break
         self.send(cmd)
-        deadline = time.time() + timeout
+        prefix, deadline = '{"T":%d' % reply_type, time.time() + timeout
         while time.time() < deadline:
-            line = self.ser.readline().decode(errors="replace").strip()
-            if line.startswith('{"T":%d' % reply_type):
+            try:
+                line = self.replies.get(timeout=max(0.01, deadline - time.time()))
+            except queue.Empty:
+                break
+            if line.startswith(prefix):
                 return json.loads(line, strict=False)
-            self._scan(line)
         raise TimeoutError(f"no T:{reply_type} reply on {self.ser.port}")
 
     def close(self):
+        self._running = False
+        self._reader.join(timeout=1.0)
         self.ser.close()
 
 
@@ -195,6 +237,22 @@ class RoArm:
     def torque(self, on):
         """Turn all joint motors on or off. Off = the arm goes limp, so hold it first."""
         self.link.send({"T": 210, "cmd": 1 if on else 0})
+
+    def telemetry_start(self):
+        """Start recording the T:118 stream (USB + roarm-m3 firmware only)."""
+        if not isinstance(self.link, _Serial):
+            raise RuntimeError("telemetry needs the USB connection")
+        self.link.telemetry = []
+        self.link.send({"T": 118, "cmd": 1})
+
+    def telemetry_stop(self):
+        """Stop recording; returns roarm.telemetry.parse() of what came in (or None)."""
+        from . import telemetry
+
+        self.link.send({"T": 118, "cmd": 0})
+        time.sleep(0.05)
+        lines, self.link.telemetry = self.link.telemetry or [], None
+        return telemetry.parse(lines)
 
     # Needs the roarm-m3 firmware (firmware/RoArm-M3_example, adds T:116 / T:117).
     SERVO_IDS = {"base": (11,), "shoulder": (12, 13), "elbow": (14,), "wrist": (15,), "roll": (16,), "gripper": (17,)}
