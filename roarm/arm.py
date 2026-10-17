@@ -196,6 +196,22 @@ class RoArm:
         """Turn all joint motors on or off. Off = the arm goes limp, so hold it first."""
         self.link.send({"T": 210, "cmd": 1 if on else 0})
 
+    # Needs the roarm-m3 firmware (firmware/RoArm-M3_example, adds T:116 / T:117).
+    SERVO_IDS = {"base": (11,), "shoulder": (12, 13), "elbow": (14,), "wrist": (15,), "roll": (16,), "gripper": (17,)}
+
+    def read_reg(self, servo_id, addr, length=1):
+        """Read a servo register (T:116). Returns None if the servo didn't answer."""
+        r = self.link.query({"T": 116, "id": servo_id, "addr": addr, "len": length}, 1161)
+        return r["val"] if r.get("ok") else None
+
+    def write_reg(self, servo_id, addr, value, length=1):
+        """Write a whitelisted servo register (T:117): P 21, D 22, I 23, min startup force 24 (2 bytes),
+        dead zones 26/27, acceleration 41. Not saved to EEPROM. Returns the value read back."""
+        r = self.link.query({"T": 117, "id": servo_id, "addr": addr, "len": length, "val": int(value)}, 1171)
+        if not r.get("ok"):
+            raise ValueError(f"servo {servo_id} register {addr} write of {value} failed (read back {r.get('val')})")
+        return r["val"]
+
     def set_pid(self, joint, p, i):
         """Set a joint's servo P and I gains (T:108). Joints: 1 base, 2 shoulder (both
         servos), 3 elbow, 4 wrist, 5 roll, 6 gripper. Not saved: every startup resets
