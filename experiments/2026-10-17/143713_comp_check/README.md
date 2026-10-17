@@ -11,6 +11,8 @@
 | **compensated, round 1** | **−0.7 mm** | **−0.9 / −1.0 mm** | **−1.2 / 1.9 / −1.0 mm** |
 | **compensated, round 2** | **−0.2 mm** | **−0.8 / −1.2 mm** | **−0.8 / 1.9 / −0.8 mm** |
 
+**Data note: the arm was accidentally hit during plain round 2** (`trials/02_plain.npz`, t ≈ 9.1 s, in the hold after the "back" move). The elbow was pushed ~23 counts (~2°) in ~40 ms (current 6 → 123 mA, load 160) and settled 7 counts off. Only that trial's "after return from the left" numbers are affected (−8.8 / 2.6 / −13.0 mm). The rise numbers were measured ~5 s earlier and are clean. The compensated trial right after matched round 1, and all servos reported no faults afterwards.
+
 ## Findings
 
 - The compensation removes almost all of the inward pull when rising (−7 mm → under 1 mm) and the 14.6 mm vertical shortfall (→ ~1 mm), at the smooth stock gains.
