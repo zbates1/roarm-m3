@@ -12,7 +12,9 @@ roarm/teach.py             recording, training and running the policy
 roarm/train_lerobot.py     lerobot-train plus two fixes (speed, Windows)
 scripts/check_arm.py       connection test; doesn't move the arm
 scripts/train.py           train from a terminal, e.g. on a faster PC
-tmp_scripts/               quick motion tests: square_dips.py, dip_repeatability.py
+tmp_scripts/               motion tests and experiments (pd_sweep.py, comp_check.py, friction_tune.py, ...)
+experiments/               results, one folder per day, each with a README of what ran and what came out
+firmware/                  Waveshare's firmware source + our additions (servo registers, telemetry), build/backup notes
 docs/cameras.md            which cameras to buy and how to mount them
 ```
 
