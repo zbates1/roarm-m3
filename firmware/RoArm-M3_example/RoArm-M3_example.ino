@@ -29,6 +29,9 @@ JsonDocument jsonFeedback;
 // define json cmd.
 #include "json_cmd.h"
 
+// roarm-m3 addition: servo register read / whitelisted write (T:116, T:117).
+#include "servo_regs.h"
+
 // functions for editing the files in flash.
 #include "files_ctrl.h"
 

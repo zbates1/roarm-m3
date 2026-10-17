@@ -5,8 +5,17 @@ void jsonCmdReceiveHandler(){
 	case CMD_EMERGENCY_STOP:
 												StopFlag = true;
 												break;
-	case CMD_RESET_EMERGENCY: 
+	case CMD_RESET_EMERGENCY:
 												StopFlag = false;
+												break;
+	// roarm-m3 additions (servo_regs.h)
+	case CMD_SERVO_REG_READ:
+												servoRegRead(jsonCmdReceive["id"], jsonCmdReceive["addr"],
+												             jsonCmdReceive["len"] | 1);
+												break;
+	case CMD_SERVO_REG_WRITE:
+												servoRegWrite(jsonCmdReceive["id"], jsonCmdReceive["addr"],
+												              jsonCmdReceive["len"] | 1, jsonCmdReceive["val"] | -1);
 												break;
 
 

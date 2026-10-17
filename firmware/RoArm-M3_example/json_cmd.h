@@ -111,6 +111,14 @@
 // {"T":114,"led":255}
 #define CMD_LIGHT_CTRL 114
 
+// roarm-m3 addition: read a servo register (see servo_regs.h).
+// {"T":116,"id":12,"addr":22,"len":1}
+#define CMD_SERVO_REG_READ 116
+
+// roarm-m3 addition: write a whitelisted servo register (see servo_regs.h).
+// {"T":117,"id":12,"addr":22,"len":1,"val":40}
+#define CMD_SERVO_REG_WRITE 117
+
 // switch off.
 // {"T":115}
 #define CMD_SWITCH_OFF 115
