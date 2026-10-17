@@ -10,3 +10,9 @@ outputs/
 
 # Waveshare downloads (link to them in the README instead).
 vendor/
+
+# VibeWise learning notes (local only)
+.vibe-wise/
+
+# Flash backups include the WiFi password (saved startup commands) - never commit.
+firmware/backup/
