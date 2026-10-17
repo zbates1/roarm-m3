@@ -242,7 +242,8 @@ class Mover:
             q[:4] += self.comp.predict(q[:4], s4)
         return q
 
-    def move(self, a, b, speed=15.0):
+    def move(self, a, b, speed=15.0, log=None):
+        """log: optional list; each streamed step appends (time, x, y, z) of the target."""
         problems = check_line(a, b, self.pitch)
         if problems:
             raise ValueError(problems[0])
@@ -255,7 +256,10 @@ class Mover:
             tick = time.perf_counter()
             u = min(1.0, (tick - t0) / duration)
             s4 = old + (new - old) * min(1.0, u / 0.2)
-            self.arm.move(self.command(a + (b - a) * min_jerk(u), s4), spd=0, acc=0)
+            p = a + (b - a) * min_jerk(u)
+            self.arm.move(self.command(p, s4), spd=0, acc=0)
+            if log is not None:
+                log.append((tick, *p))
             if u >= 1.0:
                 break
             time.sleep(max(0.0, 1 / self.rate - (time.perf_counter() - tick)))
