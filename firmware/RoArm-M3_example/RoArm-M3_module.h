@@ -273,6 +273,13 @@ void RoArmM3_moveInit() {
   // set the position as the middle of the SHOULDER_DRIVEN_SERVO.
   if(InfoPrint == 1){Serial.println("Set this pos as the middle pos for SHOULDER_DRIVEN_SERVO.");}
   setMiddlePos(SHOULDER_DRIVEN_SERVO_ID);
+  // roarm-m3 addition: B's middle was just set where A is holding the joint, which
+  // includes A's gravity sag. That sag is exactly how far B's zero is off, so trim
+  // every later B goal by it; otherwise the two servos fight each other.
+  if (getFeedback(SHOULDER_DRIVING_SERVO_ID, true)) {
+    shoulderDrivenTrim = constrain(servoFeedback[SHOULDER_DRIVING_SERVO_ID - 11].pos - ARM_SERVO_MIDDLE_POS, -150, 150);
+  }
+  Serial.print("Shoulder driven trim: "); Serial.println(shoulderDrivenTrim);
 
   // SHOULDER_DRIVEN_SERVO starts producing torque.
   if(InfoPrint == 1){Serial.println("SHOULDER_DRIVEN_SERVO starts producing torque.");}
@@ -327,7 +334,7 @@ int RoArmM3_shoulderJointCtrlRad(byte returnType, double radInput, u16 speedInpu
   radInput = constrain(radInput, -M_PI/2, M_PI/2);
   s16 computePos = calculatePosByRad(radInput);
   goalPos[1] = ARM_SERVO_MIDDLE_POS + computePos;
-  goalPos[2] = ARM_SERVO_MIDDLE_POS - computePos;
+  goalPos[2] = ARM_SERVO_MIDDLE_POS - computePos + shoulderDrivenTrim;  // roarm-m3: trim
   
   if(returnType == 1){
     st.WritePosEx(SHOULDER_DRIVING_SERVO_ID, goalPos[1], speedInput, accInput);

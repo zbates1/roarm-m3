@@ -13,6 +13,15 @@ void jsonCmdReceiveHandler(){
 												servoRegRead(jsonCmdReceive["id"], jsonCmdReceive["addr"],
 												             jsonCmdReceive["len"] | 1);
 												break;
+	case CMD_SHOULDER_TRIM:
+												if (jsonCmdReceive.containsKey("trim")) {
+													shoulderDrivenTrim = constrain((int)jsonCmdReceive["trim"], -150, 150);
+												}
+												jsonInfoHttp.clear();
+												jsonInfoHttp["T"] = 1191;
+												jsonInfoHttp["trim"] = shoulderDrivenTrim;
+												{ String out; serializeJson(jsonInfoHttp, out); Serial.println(out); }
+												break;
 	case CMD_TELEMETRY:
 												telemetryConfig(jsonCmdReceive["cmd"] | 0);
 												break;

@@ -123,6 +123,10 @@
 // {"T":118,"cmd":1}
 #define CMD_TELEMETRY 118
 
+// roarm-m3 addition: read / set the shoulder-driven trim (counts, RAM only).
+// {"T":119} reads it, {"T":119,"trim":30} sets it -> {"T":1191,"trim":30}
+#define CMD_SHOULDER_TRIM 119
+
 // switch off.
 // {"T":115}
 #define CMD_SWITCH_OFF 115

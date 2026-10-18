@@ -3,6 +3,9 @@ StaticJsonDocument<256> jsonCmdReceive;
 StaticJsonDocument<256> jsonInfoSend;
 StaticJsonDocument<256> jsonInfoHttp;
 JsonDocument jsonFeedback;
+// roarm-m3 addition: counts added to every SHOULDER_DRIVEN goal so both shoulder
+// servos agree on the joint angle (measured at power-on calibration; see T:119).
+int shoulderDrivenTrim = 0;
 #include <SCServo.h>
 #include <Preferences.h>
 #include <nvs_flash.h>
