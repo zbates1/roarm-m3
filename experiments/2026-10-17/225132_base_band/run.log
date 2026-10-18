@@ -1,0 +1,33 @@
+Results -> D:\repos\roarm-m3\experiments\2026-10-17\225132_base_band
+
+Reach 180 mm: angle  pass  from below / from above (counts)  band  centre
+   -8  up      -7.0 /   +9.0    16.0   +1.0
+   -4  up      -8.5 /  +13.5    22.0   +2.5
+   +0  up      -5.5 /   +9.0    14.5   +1.8
+   +4  up     -14.5 /   +5.5    20.0   -4.5
+   +8  up     -13.0 /   +8.0    21.0   -2.5
+   +4  down   -14.0 /   +7.0    21.0   -3.5
+   +0  down    -4.5 /   +9.5    14.0   +2.5
+   -4  down    -8.0 /  +15.0    23.0   +3.5
+   -8  down    -7.5 /   +9.0    16.5   +0.8
+
+Reach 220 mm: angle  pass  from below / from above (counts)  band  centre
+   -8  up      -7.0 /   +9.0    16.0   +1.0
+   -4  up      -8.5 /  +14.0    22.5   +2.8
+   +0  up      -6.0 /   +9.5    15.5   +1.8
+   +4  up     -14.0 /   +5.0    19.0   -4.5
+   +8  up     -14.0 /   +9.0    23.0   -2.5
+   +4  down   -14.0 /   +5.5    19.5   -4.2
+   +0  down    -6.0 /  +11.0    17.0   +2.5
+   -4  down    -8.0 /  +15.0    23.0   +3.5
+   -8  down    -7.0 /   +9.0    16.0   +1.0
+
+Reach 200 mm, base 0: approach (counts)  from below / from above  band  centre
+   10     -2.5 /   +2.0     4.5   -0.2
+   20     -4.5 /   +8.0    12.5   +1.8
+   40     -6.0 /   +9.0    15.0   +1.5
+   80     -6.0 /   +9.5    15.5   +1.8
+Reach 180: centre = -0.2 -0.36*deg counts; up pass - down pass -0.6 counts
+Reach 220: centre = -0.2 -0.38*deg counts; up pass - down pass -0.4 counts
+Saved D:\repos\roarm-m3\experiments\2026-10-17\225132_base_band\data.json
+EXIT 0

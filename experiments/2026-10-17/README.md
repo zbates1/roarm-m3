@@ -12,5 +12,9 @@
 | `223312_shoulder_trim/`, `223625_shoulder_trim_sweep/` | Trim vs no trim; trim 35–56 | The fight is gone (errors 15–20 → 3–4 counts, loads ~3× lower), shoulder sag 15 → 2 counts. The power-on value (41) is the best one. |
 | `223652_friction_refit/` | Compensation refit with the trim | Shoulder residual 3.4 → 1.9 counts; checks 1.15 / 1.97 / 1.13 mm (above / below / rise). Saved. The base's band centre moves ~5 counts between the −y and +y sides: the next thing to fix. |
 | `224651_comp_check/` | Compensation vs plain, refitted | Sideways after returning from the left 1.9 → 0.8 mm, vertical after rising ~1.1 → 0.1–0.6 mm; inward shift on rising still ~1 mm. |
+| `225132_base_band/` | Base only: angle × reach × history | The base's band centre depends on its angle (not reach, no hysteresis): a property of the base drive. |
+| `225625_base_band_fine/` | Base map, 1° steps | Smooth, repeatable curve: +4 counts near −3°, −5 near +4°. Band 15–25 counts. |
+| `230219_base_map_check/` | Fitted base term vs base map | From below 2.10 → 0.99 mm (sideways 1.9 → 0.2), from above 1.42 → 1.06 mm. Saved. +0.9 mm sideways remains from above. |
+| `230614_comp_check/` | Drift check with the map | Unchanged (~1 mm). The base stops at the same count on the slow return whatever the command: approach speed matters. |
 
 `make_figures.py` regenerates the figures.

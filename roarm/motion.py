@@ -169,14 +169,22 @@ class Compensation:
     where direction is +1 / -1 for the way the joint last moved. Friction makes a
     joint stop short in its direction of travel; adding the predicted shortfall to
     the command makes it land on target whichever way it arrives.
+
+    The base's band also moves with its angle (experiments/2026-10-17/*_base_band*),
+    so an optional base_map replaces the base term where it was measured:
+    {"deg": [...], "centre": [...], "half": [...]}, counts (measured - commanded),
+    shortfall = -centre + direction * half. It fades into the fitted term over
+    BLEND_DEG past either end.
     """
 
     NAMES = ("base", "shoulder", "elbow", "wrist")
+    BLEND_DEG = 2.0
 
-    def __init__(self, coef, residual=None, load_friction=False):
+    def __init__(self, coef, residual=None, load_friction=False, base_map=None):
         self.coef = {n: np.asarray(coef[n], float) for n in self.NAMES}
         self.residual = residual or {n: 0.0 for n in self.NAMES}
         self.load_friction = load_friction
+        self.base_map = base_map
 
     @staticmethod
     def features(q4, s4, load_friction=False):
@@ -198,7 +206,14 @@ class Compensation:
 
     def predict(self, q4, s4):
         f = self.features(q4, s4, self.load_friction)
-        return np.array([self.coef[n] @ f[n] for n in self.NAMES])
+        out = np.array([self.coef[n] @ f[n] for n in self.NAMES])
+        m = self.base_map
+        if m is not None:
+            deg = math.degrees(q4[0])
+            mapped = (-np.interp(deg, m["deg"], m["centre"]) + s4[0] * np.interp(deg, m["deg"], m["half"])) * COUNT
+            w = min(max(m["deg"][0] - deg, deg - m["deg"][-1], 0.0) / self.BLEND_DEG, 1.0)
+            out[0] = (1 - w) * mapped + w * out[0]
+        return out
 
     def friction_counts(self):
         """Friction term (counts) at zero lever arm; with load_friction it also grows with load."""
@@ -216,12 +231,15 @@ class Compensation:
         return cls(coef, residual, load_friction)
 
     def to_dict(self):
-        return {"coef": {n: c.tolist() for n, c in self.coef.items()}, "residual_rad": self.residual,
-                "load_friction": self.load_friction}
+        d = {"coef": {n: c.tolist() for n, c in self.coef.items()}, "residual_rad": self.residual,
+             "load_friction": self.load_friction}
+        if self.base_map is not None:
+            d["base_map"] = self.base_map
+        return d
 
     @classmethod
     def from_dict(cls, d):
-        return cls(d["coef"], d.get("residual_rad"), d.get("load_friction", False))
+        return cls(d["coef"], d.get("residual_rad"), d.get("load_friction", False), d.get("base_map"))
 
 
 class Mover:

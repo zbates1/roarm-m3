@@ -1,0 +1,1203 @@
+{
+ "delta_counts": 40,
+ "sweep": [
+  {
+   "reach": 180.0,
+   "deg": -10,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2161,
+     "present": 2170,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -8.2
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2161,
+     "present": 2151,
+     "load": -52,
+     "err_counts": 10,
+     "err_state_counts": 10.8
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 10.0,
+   "band": 19.0,
+   "centre": 0.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -9,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2149,
+     "present": 2158,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -7.6
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2149,
+     "present": 2140,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 10.4
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 9.0,
+   "band": 18.0,
+   "centre": 0.0
+  },
+  {
+   "reach": 180.0,
+   "deg": -8,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2138,
+     "present": 2147,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -8.0
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2138,
+     "present": 2129,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 10.0
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 9.0,
+   "band": 18.0,
+   "centre": 0.0
+  },
+  {
+   "reach": 180.0,
+   "deg": -7,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2127,
+     "present": 2135,
+     "load": 44,
+     "err_counts": -8,
+     "err_state_counts": -7.4
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2127,
+     "present": 2117,
+     "load": -52,
+     "err_counts": 10,
+     "err_state_counts": 10.6
+    }
+   ],
+   "from_below": -8.0,
+   "from_above": 10.0,
+   "band": 18.0,
+   "centre": 1.0
+  },
+  {
+   "reach": 180.0,
+   "deg": -6,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2115,
+     "present": 2124,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -7.7
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2115,
+     "present": 2103,
+     "load": -60,
+     "err_counts": 12,
+     "err_state_counts": 13.3
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 12.0,
+   "band": 21.0,
+   "centre": 1.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -5,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2104,
+     "present": 2114,
+     "load": 52,
+     "err_counts": -10,
+     "err_state_counts": -9.1
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2104,
+     "present": 2092,
+     "load": -60,
+     "err_counts": 12,
+     "err_state_counts": 12.9
+    }
+   ],
+   "from_below": -10.0,
+   "from_above": 12.0,
+   "band": 22.0,
+   "centre": 1.0
+  },
+  {
+   "reach": 180.0,
+   "deg": -4,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2093,
+     "present": 2102,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -8.5
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2093,
+     "present": 2077,
+     "load": -76,
+     "err_counts": 16,
+     "err_state_counts": 16.5
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 16.0,
+   "band": 25.0,
+   "centre": 3.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -3,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2081,
+     "present": 2090,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -7.9
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2081,
+     "present": 2067,
+     "load": -68,
+     "err_counts": 14,
+     "err_state_counts": 15.1
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 14.0,
+   "band": 23.0,
+   "centre": 2.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -2,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2070,
+     "present": 2076,
+     "load": 36,
+     "err_counts": -6,
+     "err_state_counts": -5.2
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2070,
+     "present": 2057,
+     "load": -64,
+     "err_counts": 13,
+     "err_state_counts": 13.8
+    }
+   ],
+   "from_below": -6.0,
+   "from_above": 13.0,
+   "band": 19.0,
+   "centre": 3.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -1,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2058,
+     "present": 2064,
+     "load": 36,
+     "err_counts": -6,
+     "err_state_counts": -4.6
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2058,
+     "present": 2046,
+     "load": -60,
+     "err_counts": 12,
+     "err_state_counts": 13.4
+    }
+   ],
+   "from_below": -6.0,
+   "from_above": 12.0,
+   "band": 18.0,
+   "centre": 3.0
+  },
+  {
+   "reach": 180.0,
+   "deg": 0,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2047,
+     "present": 2053,
+     "load": 36,
+     "err_counts": -6,
+     "err_state_counts": -5.0
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2047,
+     "present": 2038,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 10.0
+    }
+   ],
+   "from_below": -6.0,
+   "from_above": 9.0,
+   "band": 15.0,
+   "centre": 1.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 1,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2036,
+     "present": 2045,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -8.4
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2036,
+     "present": 2029,
+     "load": -40,
+     "err_counts": 7,
+     "err_state_counts": 7.6
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 7.0,
+   "band": 16.0,
+   "centre": -1.0
+  },
+  {
+   "reach": 180.0,
+   "deg": 2,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2024,
+     "present": 2036,
+     "load": 60,
+     "err_counts": -12,
+     "err_state_counts": -10.8
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2024,
+     "present": 2018,
+     "load": -36,
+     "err_counts": 6,
+     "err_state_counts": 7.2
+    }
+   ],
+   "from_below": -12.0,
+   "from_above": 6.0,
+   "band": 18.0,
+   "centre": -3.0
+  },
+  {
+   "reach": 180.0,
+   "deg": 3,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2013,
+     "present": 2026,
+     "load": 64,
+     "err_counts": -13,
+     "err_state_counts": -12.1
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2013,
+     "present": 2007,
+     "load": -36,
+     "err_counts": 6,
+     "err_state_counts": 6.9
+    }
+   ],
+   "from_below": -13.0,
+   "from_above": 6.0,
+   "band": 19.0,
+   "centre": -3.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 4,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2001,
+     "present": 2017,
+     "load": 76,
+     "err_counts": -16,
+     "err_state_counts": -14.5
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2001,
+     "present": 1996,
+     "load": -32,
+     "err_counts": 5,
+     "err_state_counts": 6.5
+    }
+   ],
+   "from_below": -16.0,
+   "from_above": 5.0,
+   "band": 21.0,
+   "centre": -5.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 5,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1990,
+     "present": 2005,
+     "load": 72,
+     "err_counts": -15,
+     "err_state_counts": -13.9
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1990,
+     "present": 1984,
+     "load": -36,
+     "err_counts": 6,
+     "err_state_counts": 7.1
+    }
+   ],
+   "from_below": -15.0,
+   "from_above": 6.0,
+   "band": 21.0,
+   "centre": -4.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 6,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1979,
+     "present": 1993,
+     "load": 68,
+     "err_counts": -14,
+     "err_state_counts": -13.3
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1979,
+     "present": 1970,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 9.7
+    }
+   ],
+   "from_below": -14.0,
+   "from_above": 9.0,
+   "band": 23.0,
+   "centre": -2.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 7,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1967,
+     "present": 1981,
+     "load": 68,
+     "err_counts": -14,
+     "err_state_counts": -12.6
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1967,
+     "present": 1958,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 10.4
+    }
+   ],
+   "from_below": -14.0,
+   "from_above": 9.0,
+   "band": 23.0,
+   "centre": -2.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 8,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1956,
+     "present": 1969,
+     "load": 64,
+     "err_counts": -13,
+     "err_state_counts": -12.0
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1956,
+     "present": 1948,
+     "load": -44,
+     "err_counts": 8,
+     "err_state_counts": 9.0
+    }
+   ],
+   "from_below": -13.0,
+   "from_above": 8.0,
+   "band": 21.0,
+   "centre": -2.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 9,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1945,
+     "present": 1957,
+     "load": 60,
+     "err_counts": -12,
+     "err_state_counts": -11.4
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1945,
+     "present": 1936,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 9.6
+    }
+   ],
+   "from_below": -12.0,
+   "from_above": 9.0,
+   "band": 21.0,
+   "centre": -1.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 10,
+   "pass": "up",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1933,
+     "present": 1945,
+     "load": 60,
+     "err_counts": -12,
+     "err_state_counts": -10.8
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1933,
+     "present": 1923,
+     "load": -52,
+     "err_counts": 10,
+     "err_state_counts": 11.2
+    }
+   ],
+   "from_below": -12.0,
+   "from_above": 10.0,
+   "band": 22.0,
+   "centre": -1.0
+  },
+  {
+   "reach": 180.0,
+   "deg": 9,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1945,
+     "present": 1957,
+     "load": 60,
+     "err_counts": -12,
+     "err_state_counts": -11.4
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1945,
+     "present": 1935,
+     "load": -52,
+     "err_counts": 10,
+     "err_state_counts": 10.6
+    }
+   ],
+   "from_below": -12.0,
+   "from_above": 10.0,
+   "band": 22.0,
+   "centre": -1.0
+  },
+  {
+   "reach": 180.0,
+   "deg": 8,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1956,
+     "present": 1969,
+     "load": 64,
+     "err_counts": -13,
+     "err_state_counts": -12.0
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1956,
+     "present": 1947,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 10.0
+    }
+   ],
+   "from_below": -13.0,
+   "from_above": 9.0,
+   "band": 22.0,
+   "centre": -2.0
+  },
+  {
+   "reach": 180.0,
+   "deg": 7,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1967,
+     "present": 1980,
+     "load": 64,
+     "err_counts": -13,
+     "err_state_counts": -11.6
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1967,
+     "present": 1958,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 10.4
+    }
+   ],
+   "from_below": -13.0,
+   "from_above": 9.0,
+   "band": 22.0,
+   "centre": -2.0
+  },
+  {
+   "reach": 180.0,
+   "deg": 6,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1979,
+     "present": 1993,
+     "load": 68,
+     "err_counts": -14,
+     "err_state_counts": -13.3
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1979,
+     "present": 1970,
+     "load": -48,
+     "err_counts": 9,
+     "err_state_counts": 9.7
+    }
+   ],
+   "from_below": -14.0,
+   "from_above": 9.0,
+   "band": 23.0,
+   "centre": -2.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 5,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 1990,
+     "present": 2003,
+     "load": 64,
+     "err_counts": -13,
+     "err_state_counts": -11.9
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 1990,
+     "present": 1983,
+     "load": -40,
+     "err_counts": 7,
+     "err_state_counts": 8.1
+    }
+   ],
+   "from_below": -13.0,
+   "from_above": 7.0,
+   "band": 20.0,
+   "centre": -3.0
+  },
+  {
+   "reach": 180.0,
+   "deg": 4,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2001,
+     "present": 2015,
+     "load": 68,
+     "err_counts": -14,
+     "err_state_counts": -12.5
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2001,
+     "present": 1996,
+     "load": -32,
+     "err_counts": 5,
+     "err_state_counts": 6.5
+    }
+   ],
+   "from_below": -14.0,
+   "from_above": 5.0,
+   "band": 19.0,
+   "centre": -4.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 3,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2013,
+     "present": 2026,
+     "load": 64,
+     "err_counts": -13,
+     "err_state_counts": -12.1
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2013,
+     "present": 2007,
+     "load": -36,
+     "err_counts": 6,
+     "err_state_counts": 6.9
+    }
+   ],
+   "from_below": -13.0,
+   "from_above": 6.0,
+   "band": 19.0,
+   "centre": -3.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 2,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2024,
+     "present": 2034,
+     "load": 52,
+     "err_counts": -10,
+     "err_state_counts": -8.8
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2024,
+     "present": 2017,
+     "load": -40,
+     "err_counts": 7,
+     "err_state_counts": 8.2
+    }
+   ],
+   "from_below": -10.0,
+   "from_above": 7.0,
+   "band": 17.0,
+   "centre": -1.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 1,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2036,
+     "present": 2043,
+     "load": 40,
+     "err_counts": -7,
+     "err_state_counts": -6.4
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2036,
+     "present": 2028,
+     "load": -44,
+     "err_counts": 8,
+     "err_state_counts": 8.6
+    }
+   ],
+   "from_below": -7.0,
+   "from_above": 8.0,
+   "band": 15.0,
+   "centre": 0.5
+  },
+  {
+   "reach": 180.0,
+   "deg": 0,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2047,
+     "present": 2053,
+     "load": 36,
+     "err_counts": -6,
+     "err_state_counts": -5.0
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2047,
+     "present": 2036,
+     "load": -56,
+     "err_counts": 11,
+     "err_state_counts": 12.0
+    }
+   ],
+   "from_below": -6.0,
+   "from_above": 11.0,
+   "band": 17.0,
+   "centre": 2.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -1,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2058,
+     "present": 2064,
+     "load": 36,
+     "err_counts": -6,
+     "err_state_counts": -4.6
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2058,
+     "present": 2045,
+     "load": -64,
+     "err_counts": 13,
+     "err_state_counts": 14.4
+    }
+   ],
+   "from_below": -6.0,
+   "from_above": 13.0,
+   "band": 19.0,
+   "centre": 3.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -2,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2070,
+     "present": 2077,
+     "load": 40,
+     "err_counts": -7,
+     "err_state_counts": -6.2
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2070,
+     "present": 2055,
+     "load": -72,
+     "err_counts": 15,
+     "err_state_counts": 15.8
+    }
+   ],
+   "from_below": -7.0,
+   "from_above": 15.0,
+   "band": 22.0,
+   "centre": 4.0
+  },
+  {
+   "reach": 180.0,
+   "deg": -3,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2081,
+     "present": 2089,
+     "load": 44,
+     "err_counts": -8,
+     "err_state_counts": -6.9
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2081,
+     "present": 2066,
+     "load": -72,
+     "err_counts": 15,
+     "err_state_counts": 16.1
+    }
+   ],
+   "from_below": -8.0,
+   "from_above": 15.0,
+   "band": 23.0,
+   "centre": 3.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -4,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2093,
+     "present": 2101,
+     "load": 44,
+     "err_counts": -8,
+     "err_state_counts": -7.5
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2093,
+     "present": 2077,
+     "load": -76,
+     "err_counts": 16,
+     "err_state_counts": 16.5
+    }
+   ],
+   "from_below": -8.0,
+   "from_above": 16.0,
+   "band": 24.0,
+   "centre": 4.0
+  },
+  {
+   "reach": 180.0,
+   "deg": -5,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2104,
+     "present": 2112,
+     "load": 44,
+     "err_counts": -8,
+     "err_state_counts": -7.1
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2104,
+     "present": 2091,
+     "load": -64,
+     "err_counts": 13,
+     "err_state_counts": 13.9
+    }
+   ],
+   "from_below": -8.0,
+   "from_above": 13.0,
+   "band": 21.0,
+   "centre": 2.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -6,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2115,
+     "present": 2124,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -7.7
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2115,
+     "present": 2103,
+     "load": -60,
+     "err_counts": 12,
+     "err_state_counts": 13.3
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 12.0,
+   "band": 21.0,
+   "centre": 1.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -7,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2127,
+     "present": 2136,
+     "load": 48,
+     "err_counts": -9,
+     "err_state_counts": -8.4
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2127,
+     "present": 2115,
+     "load": -60,
+     "err_counts": 12,
+     "err_state_counts": 12.6
+    }
+   ],
+   "from_below": -9.0,
+   "from_above": 12.0,
+   "band": 21.0,
+   "centre": 1.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -8,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2138,
+     "present": 2146,
+     "load": 44,
+     "err_counts": -8,
+     "err_state_counts": -7.0
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2138,
+     "present": 2127,
+     "load": -56,
+     "err_counts": 11,
+     "err_state_counts": 12.0
+    }
+   ],
+   "from_below": -8.0,
+   "from_above": 11.0,
+   "band": 19.0,
+   "centre": 1.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -9,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2149,
+     "present": 2156,
+     "load": 40,
+     "err_counts": -7,
+     "err_state_counts": -5.6
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2149,
+     "present": 2137,
+     "load": -60,
+     "err_counts": 12,
+     "err_state_counts": 13.4
+    }
+   ],
+   "from_below": -7.0,
+   "from_above": 12.0,
+   "band": 19.0,
+   "centre": 2.5
+  },
+  {
+   "reach": 180.0,
+   "deg": -10,
+   "pass": "down",
+   "rows": [
+    {
+     "side": -1,
+     "delta": 40,
+     "goal": 2161,
+     "present": 2168,
+     "load": 40,
+     "err_counts": -7,
+     "err_state_counts": -6.2
+    },
+    {
+     "side": 1,
+     "delta": 40,
+     "goal": 2161,
+     "present": 2149,
+     "load": -60,
+     "err_counts": 12,
+     "err_state_counts": 12.8
+    }
+   ],
+   "from_below": -7.0,
+   "from_above": 12.0,
+   "band": 19.0,
+   "centre": 2.5
+  }
+ ],
+ "lengths": [],
+ "fit": {
+  "180": {
+   "centre_at_0": -0.06,
+   "slope_per_deg": -0.296,
+   "up_minus_down": -0.93
+  }
+ },
+ "finished": "ok"
+}

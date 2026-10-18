@@ -1,0 +1,474 @@
+[
+ {
+  "trial": 0,
+  "mode": "plain",
+  "moves": {
+   "down": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.331,
+     "elbow": 0.42,
+     "wrist": 0.578
+    },
+    "roughness_max": 0.578,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -1.63,
+    "radial_during_max_mm": 0.48,
+    "sideways_during_maxabs_mm": 1.38,
+    "rest_radial_mm": -1.05,
+    "radial_shift_mm": 0.28,
+    "rest_sideways_mm": -1.37,
+    "rest_vertical_mm": -0.66,
+    "max_load": {
+     "shoulder": 48,
+     "elbow": 40,
+     "wrist": 68
+    },
+    "samples": 223
+   },
+   "up": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.286,
+     "elbow": 0.242,
+     "wrist": 0.254
+    },
+    "roughness_max": 0.286,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -8.61,
+    "radial_during_max_mm": -1.05,
+    "sideways_during_maxabs_mm": 1.37,
+    "rest_radial_mm": -7.44,
+    "radial_shift_mm": -6.39,
+    "rest_sideways_mm": -1.32,
+    "rest_vertical_mm": -9.99,
+    "max_load": {
+     "shoulder": 160,
+     "elbow": 108,
+     "wrist": 68
+    },
+    "samples": 224
+   },
+   "aside": {
+    "roughness_counts": {
+     "base": 0.329,
+     "shoulder": 0.0,
+     "elbow": 0.189,
+     "wrist": 0.134
+    },
+    "roughness_max": 0.329,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -7.96,
+    "radial_during_max_mm": -6.35,
+    "sideways_during_maxabs_mm": 6.8,
+    "rest_radial_mm": -7.12,
+    "radial_shift_mm": 0.32,
+    "rest_sideways_mm": -3.14,
+    "rest_vertical_mm": -8.55,
+    "max_load": {
+     "shoulder": 124,
+     "elbow": 100,
+     "wrist": 56
+    },
+    "samples": 254
+   },
+   "back": {
+    "roughness_counts": {
+     "base": 0.265,
+     "shoulder": 0.0,
+     "elbow": 0.0,
+     "wrist": 0.0
+    },
+    "roughness_max": 0.265,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -7.12,
+    "radial_during_max_mm": -4.64,
+    "sideways_during_maxabs_mm": 6.11,
+    "rest_radial_mm": -4.63,
+    "radial_shift_mm": 2.49,
+    "rest_sideways_mm": 2.69,
+    "rest_vertical_mm": -8.55,
+    "max_load": {
+     "shoulder": 128,
+     "elbow": 84,
+     "wrist": 32
+    },
+    "samples": 291
+   }
+  }
+ },
+ {
+  "trial": 1,
+  "mode": "compensated",
+  "moves": {
+   "down": {
+    "roughness_counts": {
+     "base": 0.065,
+     "shoulder": 0.295,
+     "elbow": 0.375,
+     "wrist": 0.514
+    },
+    "roughness_max": 0.514,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -3.63,
+    "radial_during_max_mm": 0.75,
+    "sideways_during_maxabs_mm": 2.76,
+    "rest_radial_mm": -0.51,
+    "radial_shift_mm": 3.12,
+    "rest_sideways_mm": 2.48,
+    "rest_vertical_mm": -0.75,
+    "max_load": {
+     "shoulder": 128,
+     "elbow": 76,
+     "wrist": 68
+    },
+    "samples": 223
+   },
+   "up": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.35,
+     "elbow": 0.244,
+     "wrist": 0.306
+    },
+    "roughness_max": 0.35,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -1.08,
+    "radial_during_max_mm": 0.8,
+    "sideways_during_maxabs_mm": 2.5,
+    "rest_radial_mm": -1.22,
+    "radial_shift_mm": -0.71,
+    "rest_sideways_mm": 2.47,
+    "rest_vertical_mm": 0.18,
+    "max_load": {
+     "shoulder": 164,
+     "elbow": 104,
+     "wrist": 68
+    },
+    "samples": 222
+   },
+   "aside": {
+    "roughness_counts": {
+     "base": 0.292,
+     "shoulder": 0.191,
+     "elbow": 0.184,
+     "wrist": 0.116
+    },
+    "roughness_max": 0.292,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -3.07,
+    "radial_during_max_mm": -0.48,
+    "sideways_during_maxabs_mm": 3.7,
+    "rest_radial_mm": -0.63,
+    "radial_shift_mm": 0.58,
+    "rest_sideways_mm": 0.09,
+    "rest_vertical_mm": -0.13,
+    "max_load": {
+     "shoulder": 116,
+     "elbow": 112,
+     "wrist": 56
+    },
+    "samples": 255
+   },
+   "back": {
+    "roughness_counts": {
+     "base": 0.278,
+     "shoulder": 0.154,
+     "elbow": 0.151,
+     "wrist": 0.074
+    },
+    "roughness_max": 0.278,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -0.9,
+    "radial_during_max_mm": 1.03,
+    "sideways_during_maxabs_mm": 3.93,
+    "rest_radial_mm": -0.37,
+    "radial_shift_mm": 0.26,
+    "rest_sideways_mm": 0.83,
+    "rest_vertical_mm": 0.84,
+    "max_load": {
+     "shoulder": 140,
+     "elbow": 88,
+     "wrist": 40
+    },
+    "samples": 287
+   }
+  }
+ },
+ {
+  "trial": 2,
+  "mode": "plain",
+  "moves": {
+   "down": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.383,
+     "elbow": 0.368,
+     "wrist": 0.578
+    },
+    "roughness_max": 0.578,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -1.72,
+    "radial_during_max_mm": 0.3,
+    "sideways_during_maxabs_mm": 0.83,
+    "rest_radial_mm": -0.78,
+    "radial_shift_mm": -0.1,
+    "rest_sideways_mm": 0.82,
+    "rest_vertical_mm": -0.68,
+    "max_load": {
+     "shoulder": 36,
+     "elbow": 36,
+     "wrist": 72
+    },
+    "samples": 221
+   },
+   "up": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.255,
+     "elbow": 0.244,
+     "wrist": 0.255
+    },
+    "roughness_max": 0.255,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -8.33,
+    "radial_during_max_mm": -0.78,
+    "sideways_during_maxabs_mm": 0.82,
+    "rest_radial_mm": -7.44,
+    "radial_shift_mm": -6.65,
+    "rest_sideways_mm": 0.79,
+    "rest_vertical_mm": -9.99,
+    "max_load": {
+     "shoulder": 164,
+     "elbow": 108,
+     "wrist": 68
+    },
+    "samples": 223
+   },
+   "aside": {
+    "roughness_counts": {
+     "base": 0.347,
+     "shoulder": 0.0,
+     "elbow": 0.185,
+     "wrist": 0.136
+    },
+    "roughness_max": 0.347,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -8.33,
+    "radial_during_max_mm": -6.85,
+    "sideways_during_maxabs_mm": 6.77,
+    "rest_radial_mm": -6.86,
+    "radial_shift_mm": 0.58,
+    "rest_sideways_mm": -3.14,
+    "rest_vertical_mm": -8.59,
+    "max_load": {
+     "shoulder": 124,
+     "elbow": 104,
+     "wrist": 56
+    },
+    "samples": 253
+   },
+   "back": {
+    "roughness_counts": {
+     "base": 0.26,
+     "shoulder": 0.0,
+     "elbow": 0.0,
+     "wrist": 0.0
+    },
+    "roughness_max": 0.26,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -6.86,
+    "radial_during_max_mm": -4.38,
+    "sideways_during_maxabs_mm": 5.91,
+    "rest_radial_mm": -4.38,
+    "radial_shift_mm": 2.48,
+    "rest_sideways_mm": 3.23,
+    "rest_vertical_mm": -8.59,
+    "max_load": {
+     "shoulder": 128,
+     "elbow": 84,
+     "wrist": 36
+    },
+    "samples": 289
+   }
+  }
+ },
+ {
+  "trial": 3,
+  "mode": "compensated",
+  "moves": {
+   "down": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.369,
+     "elbow": 0.331,
+     "wrist": 0.502
+    },
+    "roughness_max": 0.502,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -2.68,
+    "radial_during_max_mm": 1.03,
+    "sideways_during_maxabs_mm": 0.83,
+    "rest_radial_mm": 0.03,
+    "radial_shift_mm": 2.33,
+    "rest_sideways_mm": 0.83,
+    "rest_vertical_mm": -0.35,
+    "max_load": {
+     "shoulder": 116,
+     "elbow": 40,
+     "wrist": 68
+    },
+    "samples": 222
+   },
+   "up": {
+    "roughness_counts": {
+     "base": 0.0,
+     "shoulder": 0.362,
+     "elbow": 0.238,
+     "wrist": 0.32
+    },
+    "roughness_max": 0.362,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -1.92,
+    "radial_during_max_mm": 0.81,
+    "sideways_during_maxabs_mm": 0.83,
+    "rest_radial_mm": -1.26,
+    "radial_shift_mm": -1.29,
+    "rest_sideways_mm": 0.82,
+    "rest_vertical_mm": -0.09,
+    "max_load": {
+     "shoulder": 168,
+     "elbow": 104,
+     "wrist": 68
+    },
+    "samples": 222
+   },
+   "aside": {
+    "roughness_counts": {
+     "base": 0.323,
+     "shoulder": 0.155,
+     "elbow": 0.181,
+     "wrist": 0.149
+    },
+    "roughness_max": 0.323,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -2.21,
+    "radial_during_max_mm": -0.83,
+    "sideways_during_maxabs_mm": 3.31,
+    "rest_radial_mm": -1.04,
+    "radial_shift_mm": 0.23,
+    "rest_sideways_mm": 0.09,
+    "rest_vertical_mm": -0.28,
+    "max_load": {
+     "shoulder": 120,
+     "elbow": 108,
+     "wrist": 52
+    },
+    "samples": 253
+   },
+   "back": {
+    "roughness_counts": {
+     "base": 0.32,
+     "shoulder": 0.103,
+     "elbow": 0.166,
+     "wrist": 0.081
+    },
+    "roughness_max": 0.32,
+    "speed_sign_flips": {
+     "base": 0,
+     "shoulder": 0,
+     "elbow": 0,
+     "wrist": 0
+    },
+    "radial_during_min_mm": -1.04,
+    "radial_during_max_mm": 0.9,
+    "sideways_during_maxabs_mm": 3.96,
+    "rest_radial_mm": -0.68,
+    "radial_shift_mm": 0.36,
+    "rest_sideways_mm": 0.83,
+    "rest_vertical_mm": -0.53,
+    "max_load": {
+     "shoulder": 144,
+     "elbow": 92,
+     "wrist": 40
+    },
+    "samples": 285
+   }
+  }
+ }
+]

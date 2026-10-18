@@ -1,0 +1,20 @@
+Base map from experiments/2026-10-17/225625_base_band_fine. Results -> D:\repos\roarm-m3\experiments\2026-10-17\230219_base_map_check
+pose               base   from   comp: dist / sideways   map: dist / sideways (mm)
+(175, 25, -45)      +8.1  above   0.69 / -0.68           1.02 / +0.95
+(175, 25, -45)      +8.1  below   2.50 / -2.29           1.44 / -0.14
+(225, -25, -30)     -6.3  above   1.74 / +1.09           1.51 / +1.09
+(225, -25, -30)     -6.3  below   1.46 / -1.34           0.41 / +0.05
+(200, 30, -20)      +8.5  above   1.17 / -0.33           1.18 / +0.91
+(200, 30, -20)      +8.5  below   2.92 / -2.80           1.02 / +0.29
+(170, -20, -40)     -6.7  above   0.92 / +0.88           1.04 / +0.88
+(170, -20, -40)     -6.7  below   1.06 / -0.96           0.48 / -0.17
+(215, 15, -35)      +4.0  above   1.46 / -1.46           1.26 / +1.19
+(215, 15, -35)      +4.0  below   2.90 / -2.77           1.50 / -0.13
+(190, 10, -30)      +3.0  above   1.57 / -1.54           0.36 / +0.21
+(190, 10, -30)      +3.0  below   2.61 / -2.40           1.01 / -0.37
+(185, -8, -35)      -2.5  above   2.38 / +2.31           1.04 / +0.90
+(185, -8, -35)      -2.5  below   1.26 / -0.80           1.04 / -0.23
+Average (mm): {'comp_above': 1.42, 'comp_above_sideways': 1.18, 'comp_below': 2.1, 'comp_below_sideways': 1.91, 'map_above': 1.06, 'map_above_sideways': 0.88, 'map_below': 0.99, 'map_below_sideways': 0.2}
+The map helps; saved the compensation with it to D:\repos\roarm-m3\roarm\tuning.json
+Saved D:\repos\roarm-m3\experiments\2026-10-17\230219_base_map_check\data.json
+EXIT 0
