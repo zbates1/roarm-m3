@@ -1,0 +1,686 @@
+{
+ "poses": [
+  {
+   "pose": [
+    150.0,
+    0.0,
+    -20.0
+   ],
+   "shoulder_rad": 0.08897088468074799,
+   "reads": [
+    {
+     "A": {
+      "goal": 2089,
+      "present": 2106,
+      "load": 80,
+      "current_raw": 3,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 2005,
+      "present": 2022,
+      "load": 80,
+      "current_raw": 3,
+      "temp_c": 32
+     },
+     "mismatch": 34,
+     "err_A": 17,
+     "err_B": 17,
+     "share_A": null
+    },
+    {
+     "A": {
+      "goal": 2089,
+      "present": 2106,
+      "load": 80,
+      "current_raw": 3,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 2005,
+      "present": 2022,
+      "load": 80,
+      "current_raw": 4,
+      "temp_c": 32
+     },
+     "mismatch": 34,
+     "err_A": 17,
+     "err_B": 17,
+     "share_A": null
+    },
+    {
+     "A": {
+      "goal": 2089,
+      "present": 2106,
+      "load": 80,
+      "current_raw": 3,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 2005,
+      "present": 2022,
+      "load": 80,
+      "current_raw": 3,
+      "temp_c": 32
+     },
+     "mismatch": 34,
+     "err_A": 17,
+     "err_B": 17,
+     "share_A": null
+    }
+   ]
+  },
+  {
+   "pose": [
+    180.0,
+    0.0,
+    -20.0
+   ],
+   "shoulder_rad": 0.19481556117534637,
+   "reads": [
+    {
+     "A": {
+      "goal": 2162,
+      "present": 2175,
+      "load": 64,
+      "current_raw": 1,
+      "temp_c": 45
+     },
+     "B": {
+      "goal": 1932,
+      "present": 1949,
+      "load": 80,
+      "current_raw": 4,
+      "temp_c": 32
+     },
+     "mismatch": 30,
+     "err_A": 13,
+     "err_B": 17,
+     "share_A": -4.0
+    },
+    {
+     "A": {
+      "goal": 2162,
+      "present": 2175,
+      "load": 64,
+      "current_raw": 2,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 1932,
+      "present": 1949,
+      "load": 80,
+      "current_raw": 4,
+      "temp_c": 32
+     },
+     "mismatch": 30,
+     "err_A": 13,
+     "err_B": 17,
+     "share_A": -4.0
+    },
+    {
+     "A": {
+      "goal": 2162,
+      "present": 2175,
+      "load": 64,
+      "current_raw": 2,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 1932,
+      "present": 1949,
+      "load": 80,
+      "current_raw": 3,
+      "temp_c": 32
+     },
+     "mismatch": 30,
+     "err_A": 13,
+     "err_B": 17,
+     "share_A": -4.0
+    }
+   ]
+  },
+  {
+   "pose": [
+    210.0,
+    0.0,
+    -20.0
+   ],
+   "shoulder_rad": 0.30526217818260193,
+   "reads": [
+    {
+     "A": {
+      "goal": 2234,
+      "present": 2247,
+      "load": 64,
+      "current_raw": 2,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 1860,
+      "present": 1876,
+      "load": 76,
+      "current_raw": 2,
+      "temp_c": 32
+     },
+     "mismatch": 29,
+     "err_A": 13,
+     "err_B": 16,
+     "share_A": -5.333
+    },
+    {
+     "A": {
+      "goal": 2234,
+      "present": 2247,
+      "load": 64,
+      "current_raw": 2,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 1860,
+      "present": 1876,
+      "load": 76,
+      "current_raw": 2,
+      "temp_c": 32
+     },
+     "mismatch": 29,
+     "err_A": 13,
+     "err_B": 16,
+     "share_A": -5.333
+    },
+    {
+     "A": {
+      "goal": 2234,
+      "present": 2247,
+      "load": 64,
+      "current_raw": 2,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 1860,
+      "present": 1876,
+      "load": 76,
+      "current_raw": 3,
+      "temp_c": 32
+     },
+     "mismatch": 29,
+     "err_A": 13,
+     "err_B": 16,
+     "share_A": -5.333
+    }
+   ]
+  },
+  {
+   "pose": [
+    240.0,
+    0.0,
+    -20.0
+   ],
+   "shoulder_rad": 0.42031073570251465,
+   "reads": [
+    {
+     "A": {
+      "goal": 2308,
+      "present": 2322,
+      "load": 68,
+      "current_raw": 2,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 1786,
+      "present": 1800,
+      "load": 68,
+      "current_raw": 3,
+      "temp_c": 32
+     },
+     "mismatch": 28,
+     "err_A": 14,
+     "err_B": 14,
+     "share_A": null
+    },
+    {
+     "A": {
+      "goal": 2308,
+      "present": 2322,
+      "load": 68,
+      "current_raw": 3,
+      "temp_c": 46
+     },
+     "B": {
+      "goal": 1786,
+      "present": 1800,
+      "load": 68,
+      "current_raw": 2,
+      "temp_c": 32
+     },
+     "mismatch": 28,
+     "err_A": 14,
+     "err_B": 14,
+     "share_A": null
+    },
+    {
+     "A": {
+      "goal": 2308,
+      "present": 2322,
+      "load": 68,
+      "current_raw": 2,
+      "temp_c": 45
+     },
+     "B": {
+      "goal": 1786,
+      "present": 1800,
+      "load": 68,
+      "current_raw": 2,
+      "temp_c": 32
+     },
+     "mismatch": 28,
+     "err_A": 14,
+     "err_B": 14,
+     "share_A": null
+    }
+   ]
+  }
+ ],
+ "hold": [
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 0.2
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 3.4
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 6.6
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 9.8
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 13.0
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 16.2
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 19.4
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 22.6
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 25.8
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 29.0
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 32.2
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 35.4
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 38.6
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 41.8
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 1,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 45.0
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 48.2
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 1,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 51.4
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 32
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 54.6
+  },
+  {
+   "A": {
+    "goal": 2308,
+    "present": 2322,
+    "load": 68,
+    "current_raw": 2,
+    "temp_c": 45
+   },
+   "B": {
+    "goal": 1786,
+    "present": 1800,
+    "load": 68,
+    "current_raw": 3,
+    "temp_c": 31
+   },
+   "mismatch": 28,
+   "err_A": 14,
+   "err_B": 14,
+   "share_A": null,
+   "t": 57.8
+  }
+ ],
+ "finished": "ok"
+}

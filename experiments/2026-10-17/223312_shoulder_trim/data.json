@@ -1,0 +1,365 @@
+{
+ "boot_trim": 41,
+ "results": [
+  {
+   "condition": "power-on trim",
+   "trim": 41,
+   "poses": [
+    {
+     "x": 150.0,
+     "A": {
+      "goal": 2089,
+      "present": 2092,
+      "load": 24,
+      "current_raw": 0,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 2046,
+      "present": 2050,
+      "load": 28,
+      "current_raw": 1,
+      "temp_c": 31
+     },
+     "mismatch": 48,
+     "err_A": 3,
+     "err_B": 4,
+     "share_A": -6.0
+    },
+    {
+     "x": 180.0,
+     "A": {
+      "goal": 2162,
+      "present": 2166,
+      "load": 28,
+      "current_raw": 0,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 1973,
+      "present": 1974,
+      "load": 0,
+      "current_raw": 0,
+      "temp_c": 31
+     },
+     "mismatch": 46,
+     "err_A": 4,
+     "err_B": 1,
+     "share_A": 1.0
+    },
+    {
+     "x": 210.0,
+     "A": {
+      "goal": 2234,
+      "present": 2238,
+      "load": 28,
+      "current_raw": 0,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 1901,
+      "present": 1903,
+      "load": 20,
+      "current_raw": 0,
+      "temp_c": 31
+     },
+     "mismatch": 47,
+     "err_A": 4,
+     "err_B": 2,
+     "share_A": 3.5
+    },
+    {
+     "x": 240.0,
+     "A": {
+      "goal": 2308,
+      "present": 2311,
+      "load": 24,
+      "current_raw": 0,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 1827,
+      "present": 1830,
+      "load": 24,
+      "current_raw": 0,
+      "temp_c": 31
+     },
+     "mismatch": 47,
+     "err_A": 3,
+     "err_B": 3,
+     "share_A": null
+    }
+   ],
+   "band": {
+    "commanded": [
+     0,
+     16,
+     32,
+     16,
+     0,
+     -16,
+     -32,
+     -16,
+     0
+    ],
+    "measured": [
+     2.0,
+     20.0,
+     36.0,
+     36.0,
+     27.0,
+     12.0,
+     -5.0,
+     -5.0,
+     4.0
+    ],
+    "band_counts": 23.0,
+    "sag_counts": -2.0
+   },
+   "rise": {
+    "vertical_mm": -10.72,
+    "radial_mm": -7.09
+   }
+  },
+  {
+   "condition": "trim 0",
+   "trim": 0,
+   "poses": [
+    {
+     "x": 150.0,
+     "A": {
+      "goal": 2089,
+      "present": 2110,
+      "load": 96,
+      "current_raw": 4,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 2005,
+      "present": 2022,
+      "load": 80,
+      "current_raw": 3,
+      "temp_c": 30
+     },
+     "mismatch": 38,
+     "err_A": 21,
+     "err_B": 17,
+     "share_A": 6.0
+    },
+    {
+     "x": 180.0,
+     "A": {
+      "goal": 2162,
+      "present": 2175,
+      "load": 64,
+      "current_raw": 2,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 1932,
+      "present": 1952,
+      "load": 92,
+      "current_raw": 4,
+      "temp_c": 30
+     },
+     "mismatch": 33,
+     "err_A": 13,
+     "err_B": 20,
+     "share_A": -2.286
+    },
+    {
+     "x": 210.0,
+     "A": {
+      "goal": 2234,
+      "present": 2247,
+      "load": 64,
+      "current_raw": 2,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 1860,
+      "present": 1878,
+      "load": 84,
+      "current_raw": 4,
+      "temp_c": 30
+     },
+     "mismatch": 31,
+     "err_A": 13,
+     "err_B": 18,
+     "share_A": -3.2
+    },
+    {
+     "x": 240.0,
+     "A": {
+      "goal": 2308,
+      "present": 2322,
+      "load": 68,
+      "current_raw": 2,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 1786,
+      "present": 1802,
+      "load": 76,
+      "current_raw": 3,
+      "temp_c": 30
+     },
+     "mismatch": 30,
+     "err_A": 14,
+     "err_B": 16,
+     "share_A": -8.5
+    }
+   ],
+   "band": {
+    "commanded": [
+     0,
+     16,
+     32,
+     16,
+     0,
+     -16,
+     -32,
+     -16,
+     0
+    ],
+    "measured": [
+     15.0,
+     28.0,
+     45.0,
+     45.0,
+     43.0,
+     29.0,
+     14.0,
+     14.0,
+     15.0
+    ],
+    "band_counts": 28.0,
+    "sag_counts": -15.0
+   },
+   "rise": {
+    "vertical_mm": -15.8,
+    "radial_mm": -7.82
+   }
+  },
+  {
+   "condition": "power-on trim again",
+   "trim": 41,
+   "poses": [
+    {
+     "x": 150.0,
+     "A": {
+      "goal": 2089,
+      "present": 2092,
+      "load": 24,
+      "current_raw": 1,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 2046,
+      "present": 2050,
+      "load": 28,
+      "current_raw": 1,
+      "temp_c": 30
+     },
+     "mismatch": 48,
+     "err_A": 3,
+     "err_B": 4,
+     "share_A": -6.0
+    },
+    {
+     "x": 180.0,
+     "A": {
+      "goal": 2162,
+      "present": 2166,
+      "load": 28,
+      "current_raw": 0,
+      "temp_c": 43
+     },
+     "B": {
+      "goal": 1973,
+      "present": 1977,
+      "load": 28,
+      "current_raw": 1,
+      "temp_c": 30
+     },
+     "mismatch": 49,
+     "err_A": 4,
+     "err_B": 4,
+     "share_A": null
+    },
+    {
+     "x": 210.0,
+     "A": {
+      "goal": 2234,
+      "present": 2238,
+      "load": 28,
+      "current_raw": 0,
+      "temp_c": 42
+     },
+     "B": {
+      "goal": 1901,
+      "present": 1903,
+      "load": 20,
+      "current_raw": 1,
+      "temp_c": 30
+     },
+     "mismatch": 47,
+     "err_A": 4,
+     "err_B": 2,
+     "share_A": 3.5
+    },
+    {
+     "x": 240.0,
+     "A": {
+      "goal": 2308,
+      "present": 2312,
+      "load": 28,
+      "current_raw": 0,
+      "temp_c": 42
+     },
+     "B": {
+      "goal": 1827,
+      "present": 1829,
+      "load": 20,
+      "current_raw": 0,
+      "temp_c": 30
+     },
+     "mismatch": 47,
+     "err_A": 4,
+     "err_B": 2,
+     "share_A": 3.5
+    }
+   ],
+   "band": {
+    "commanded": [
+     0,
+     16,
+     32,
+     16,
+     0,
+     -16,
+     -32,
+     -16,
+     0
+    ],
+    "measured": [
+     2.0,
+     19.0,
+     36.0,
+     35.0,
+     30.0,
+     12.0,
+     -5.0,
+     -5.0,
+     4.0
+    ],
+    "band_counts": 26.0,
+    "sag_counts": -2.0
+   },
+   "rise": {
+    "vertical_mm": -10.72,
+    "radial_mm": -7.09
+   }
+  }
+ ]
+}

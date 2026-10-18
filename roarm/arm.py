@@ -270,6 +270,12 @@ class RoArm:
             raise ValueError(f"servo {servo_id} register {addr} write of {value} failed (read back {r.get('val')})")
         return r["val"]
 
+    def shoulder_trim(self, value=None):
+        """Read (or set) the shoulder-driven servo trim in counts (T:119, RAM only).
+        The roarm-m3 firmware measures it at power-on so both shoulder servos agree."""
+        cmd = {"T": 119} if value is None else {"T": 119, "trim": int(value)}
+        return self.link.query(cmd, 1191)["trim"]
+
     def set_pid(self, joint, p, i):
         """Set a joint's servo P and I gains (T:108). Joints: 1 base, 2 shoulder (both
         servos), 3 elbow, 4 wrist, 5 roll, 6 gripper. Not saved: every startup resets

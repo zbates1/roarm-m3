@@ -1,0 +1,203 @@
+{
+ "boot_trim": 41,
+ "rows": [
+  {
+   "trim": 35,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 0,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1934,
+    "present": 1939,
+    "load": 32,
+    "current_raw": 1,
+    "temp_c": 30
+   },
+   "mismatch": 45,
+   "err_A": 5,
+   "err_B": 5,
+   "share_A": null,
+   "load_sum": 64
+  },
+  {
+   "trim": 38,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 0,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1937,
+    "present": 1939,
+    "load": 20,
+    "current_raw": 0,
+    "temp_c": 30
+   },
+   "mismatch": 45,
+   "err_A": 5,
+   "err_B": 2,
+   "share_A": 2.667,
+   "load_sum": 52
+  },
+  {
+   "trim": 41,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 1,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1940,
+    "present": 1939,
+    "load": 0,
+    "current_raw": 0,
+    "temp_c": 30
+   },
+   "mismatch": 45,
+   "err_A": 5,
+   "err_B": -1,
+   "share_A": 1.0,
+   "load_sum": 32
+  },
+  {
+   "trim": 44,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 1,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1943,
+    "present": 1939,
+    "load": -28,
+    "current_raw": 1,
+    "temp_c": 30
+   },
+   "mismatch": 45,
+   "err_A": 5,
+   "err_B": -4,
+   "share_A": 0.533,
+   "load_sum": 60
+  },
+  {
+   "trim": 47,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 1,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1946,
+    "present": 1939,
+    "load": -40,
+    "current_raw": 1,
+    "temp_c": 30
+   },
+   "mismatch": 45,
+   "err_A": 5,
+   "err_B": -7,
+   "share_A": 0.444,
+   "load_sum": 72
+  },
+  {
+   "trim": 50,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 1,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1949,
+    "present": 1942,
+    "load": -40,
+    "current_raw": 1,
+    "temp_c": 30
+   },
+   "mismatch": 48,
+   "err_A": 5,
+   "err_B": -7,
+   "share_A": 0.444,
+   "load_sum": 72
+  },
+  {
+   "trim": 53,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 0,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1952,
+    "present": 1944,
+    "load": -44,
+    "current_raw": 1,
+    "temp_c": 30
+   },
+   "mismatch": 50,
+   "err_A": 5,
+   "err_B": -8,
+   "share_A": 0.421,
+   "load_sum": 76
+  },
+  {
+   "trim": 56,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 0,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1955,
+    "present": 1944,
+    "load": -56,
+    "current_raw": 2,
+    "temp_c": 30
+   },
+   "mismatch": 50,
+   "err_A": 5,
+   "err_B": -11,
+   "share_A": 0.364,
+   "load_sum": 88
+  },
+  {
+   "trim": 41,
+   "A": {
+    "goal": 2195,
+    "present": 2200,
+    "load": 32,
+    "current_raw": 0,
+    "temp_c": 41
+   },
+   "B": {
+    "goal": 1940,
+    "present": 1942,
+    "load": 20,
+    "current_raw": 0,
+    "temp_c": 30
+   },
+   "mismatch": 48,
+   "err_A": 5,
+   "err_B": 2,
+   "share_A": 2.667,
+   "load_sum": 52
+  }
+ ]
+}
