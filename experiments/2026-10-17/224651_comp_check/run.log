@@ -1,0 +1,7 @@
+Results -> D:\repos\roarm-m3\experiments\2026-10-17\224651_comp_check
+plain       : radial shift up/aside/back [-5.62, -0.51, 2.47] mm | at rest after up: radial -6.58 vertical -10.58 mm | after back: radial -4.61 sideways 3.77 vertical -9.4
+compensated : radial shift up/aside/back [-0.96, -0.04, 0.31] mm | at rest after up: radial -1.02 vertical -0.11 mm | after back: radial -0.74 sideways 0.82 vertical -0.81
+plain       : radial shift up/aside/back [-6.89, 0.59, 2.47] mm | at rest after up: radial -7.67 vertical -10.79 mm | after back: radial -4.61 sideways 3.77 vertical -9.4
+compensated : radial shift up/aside/back [-1.42, 0.34, 0.31] mm | at rest after up: radial -1.39 vertical -0.64 mm | after back: radial -0.74 sideways 0.82 vertical -0.81
+Saved D:\repos\roarm-m3\experiments\2026-10-17\224651_comp_check\summary.json
+EXIT 0

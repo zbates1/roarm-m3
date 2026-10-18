@@ -1,4 +1,4 @@
-"""Figures for 2026-10-17: the P x D sweep and the compensation check.
+"""Figures for 2026-10-17: the P x D sweep and the compensation checks.
 
     uv run python experiments/2026-10-17/make_figures.py
 """
@@ -79,8 +79,7 @@ def sweep_figure():
     return out
 
 
-def comp_figure():
-    run = Path(sorted(glob.glob(str(DAY / "*_comp_check")))[-1])
+def comp_figure(run):
     fig, axes = plt.subplots(2, 1, figsize=(11, 6.4), sharex=True)
     for c, mode in enumerate(("plain", "compensated")):
         z = np.load(sorted(run.glob(f"trials/*_{mode}.npz"))[0])
@@ -120,5 +119,6 @@ def comp_figure():
 
 
 if __name__ == "__main__":
-    for f in (sweep_figure(), comp_figure()):
+    runs = [Path(r) for r in sorted(glob.glob(str(DAY / "*_comp_check")))]
+    for f in (sweep_figure(), *map(comp_figure, runs)):
         print("wrote", f)

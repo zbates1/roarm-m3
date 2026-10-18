@@ -17,7 +17,7 @@ Stock gains because higher P made motion rough (smooth_test.py ratings).
 Saves the better friction model (and stock gains) to roarm/tuning.json only if it
 beats gravity-only on arrivals from below without getting worse from
 above. Stops on firmware warnings, a load over 85 %, supply outside 10.5-13 V,
-or a motor turning off. Results: tmp_scripts/results/friction_<time>.json.
+or a motor turning off. Results: experiments/<date>/<time>_friction_refit/friction_<time>.json.
 
     uv run python tmp_scripts/friction_tune.py      # ~7 min; Ctrl+C stops it
 """
@@ -44,7 +44,6 @@ CHECK = [(175, 25, -45), (225, -25, -30), (200, 30, -20), (170, -20, -40), (215,
 # shorter approach may arrive before the joint has fully broken free of friction.
 APPROACH = {"above": np.array([0.0, 10.0, 25.0]), "below": np.array([0.0, -10.0, -25.0])}
 RISE = (np.array([190.0, 0.0, -60.0]), np.array([190.0, 0.0, -40.0]))
-OUT = experiments.day_dir()  # experiments/<today>/
 
 
 class Abort(Exception):
@@ -134,8 +133,7 @@ def main():
     ap.add_argument("--arm", default=None)
     args = ap.parse_args()
     gains = {n: 16 for n in tuning.JOINT_IDS}   # stock: higher P made motion rough
-    OUT.mkdir(exist_ok=True)
-    path = OUT / time.strftime("friction_%Y%m%d_%H%M%S.json")
+    path = experiments.new_run("friction_refit") / time.strftime("friction_%Y%m%d_%H%M%S.json")
     log = {"started": time.strftime("%Y-%m-%d %H:%M:%S"), "gains": gains}
     arm = RoArm(args.arm)
     if "." in arm.target:
@@ -217,7 +215,7 @@ def main():
         better = (summary[f"{best}_below"] < summary["gravity_below"] and summary[f"{best}_above"] <= summary["gravity_above"] + 0.2)
         log["best"] = best
         if better:
-            tuning.save(gains, gravity, source=path.name, compensation=rig.comps[best])
+            tuning.save(gains, gravity, source=path.relative_to(experiments.ROOT.parent).as_posix(), compensation=rig.comps[best])
             say(f"Best: {'load-scaled friction' if best == 'compL' else 'constant friction'}; saved it (with stock gains) to {tuning.PATH}")
         else:
             say("Gravity + friction didn't clearly beat gravity-only; tuning.json left unchanged")
