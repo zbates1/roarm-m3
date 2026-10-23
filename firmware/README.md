@@ -1,5 +1,7 @@
 # Firmware
 
+`RoArm-M3_example/` is Waveshare's RoArm-M3 example firmware, downloaded from the [RoArm-M3 wiki](https://www.waveshare.com/wiki/RoArm-M3) (RoArm-M3_example_20260701.zip), with the changes described below. The original code is Waveshare's. The download has no licence file; Waveshare publishes the closely related [RoArm-M2 firmware](https://github.com/waveshareteam/roarm_m2) under AGPL-3.0.
+
 ## Backup of the arm as shipped (2026-10-17)
 
 | | |

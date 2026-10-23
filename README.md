@@ -17,6 +17,7 @@ tmp_scripts/               motion tests and experiments (pd_sweep.py, comp_check
 experiments/               results, one folder per day, each with a README of what ran and what came out
 firmware/                  Waveshare's firmware source + our additions (servo registers, telemetry), build/backup notes
 docs/cameras.md            which cameras to buy and how to mount them
+hardware/spe_rack/         3D-printable rack for 12 electrodes (STL + generator), spaced for the arm's measured error
 ```
 
 ## Setup

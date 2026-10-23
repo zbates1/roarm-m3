@@ -1,0 +1,95 @@
+{
+ "units": "mm",
+ "frame": "origin at the chamfered corner, on the bottom; x across the strips' faces (jaw closing direction), y along their width, z up",
+ "size": [
+  62,
+  62,
+  13.0
+ ],
+ "top_z": 13.0,
+ "slot": {
+  "t": 0.5,
+  "w": 10.0,
+  "depth": 10.0,
+  "lead_in": 1.5,
+  "face_relief": 0.0
+ },
+ "pitch": [
+  16,
+  20
+ ],
+ "slots": [
+  {
+   "n": 1,
+   "x": 7.0,
+   "y": 11.0
+  },
+  {
+   "n": 2,
+   "x": 23.0,
+   "y": 11.0
+  },
+  {
+   "n": 3,
+   "x": 39.0,
+   "y": 11.0
+  },
+  {
+   "n": 4,
+   "x": 55.0,
+   "y": 11.0
+  },
+  {
+   "n": 5,
+   "x": 7.0,
+   "y": 31.0
+  },
+  {
+   "n": 6,
+   "x": 23.0,
+   "y": 31.0
+  },
+  {
+   "n": 7,
+   "x": 39.0,
+   "y": 31.0
+  },
+  {
+   "n": 8,
+   "x": 55.0,
+   "y": 31.0
+  },
+  {
+   "n": 9,
+   "x": 7.0,
+   "y": 51.0
+  },
+  {
+   "n": 10,
+   "x": 23.0,
+   "y": 51.0
+  },
+  {
+   "n": 11,
+   "x": 39.0,
+   "y": 51.0
+  },
+  {
+   "n": 12,
+   "x": 55.0,
+   "y": 51.0
+  }
+ ],
+ "strip_above_rack_mm": 24.0,
+ "gripper_assumed": {
+  "jaw_t": 6.0,
+  "jaw_w": 20.0
+ },
+ "error_budget_per_side": {
+  "arm, last 5 mm of the descent (benchmark 2026-10-18, worst, encoders)": 2.0,
+  "not seen by the encoders (link flex, geometry)": 1.0,
+  "where the rack sits (taught by touching it, or found by camera)": 1.0,
+  "strip leaning in its slot": 0.5
+ },
+ "error_total_per_side": 4.5
+}
