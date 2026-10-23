@@ -12,6 +12,7 @@ roarm/teach.py             recording, training and running the policy
 roarm/train_lerobot.py     lerobot-train plus two fixes (speed, Windows)
 scripts/check_arm.py       connection test; doesn't move the arm
 scripts/train.py           train from a terminal, e.g. on a faster PC
+scripts/benchmark.py       standard up-over-down test (4 spots, 20 mm dips); scores go in experiments/benchmark.md
 tmp_scripts/               motion tests and experiments (pd_sweep.py, comp_check.py, friction_tune.py, ...)
 experiments/               results, one folder per day, each with a README of what ran and what came out
 firmware/                  Waveshare's firmware source + our additions (servo registers, telemetry), build/backup notes

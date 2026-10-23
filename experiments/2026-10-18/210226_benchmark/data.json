@@ -1,0 +1,634 @@
+{
+ "meta": {
+  "code": "146d2ce+changes",
+  "label": "baseline: shoulder trim + refit + base map",
+  "rounds": 2,
+  "shoulder_trim": 41,
+  "compensation_source": "experiments/2026-10-17/230219_base_map_check",
+  "spots": [
+   [
+    190.0,
+    -30.0,
+    -20.0
+   ],
+   [
+    190.0,
+    -10.0,
+    -20.0
+   ],
+   [
+    190.0,
+    10.0,
+    -20.0
+   ],
+   [
+    190.0,
+    30.0,
+    -20.0
+   ]
+  ],
+  "z_down": -40.0,
+  "speed_mm_s": 15.0,
+  "finished": "ok"
+ },
+ "plain": {
+  "summary": {
+   "bottom_mean": 3.71,
+   "bottom_worst": 5.07,
+   "top_mean": 13.69,
+   "top_worst": 14.41,
+   "repeat_worst": 3.86,
+   "path_worst": 15.82,
+   "path_mean": 14.06,
+   "inward_worst": -6.27,
+   "inward_mean": -5.44,
+   "rough": 10.52,
+   "bottom_radial_mean": -0.99,
+   "bottom_sideways_mean": 0.55,
+   "bottom_vertical_mean": -0.59
+  },
+  "dips": [
+   {
+    "spot": 1,
+    "radial": -1.86,
+    "sideways": 3.83,
+    "vertical": -1.07,
+    "dist": 4.39,
+    "tip": [
+     188.76,
+     -25.93,
+     -41.07
+    ],
+    "t": 2.35
+   },
+   {
+    "spot": 2,
+    "radial": -0.79,
+    "sideways": -2.53,
+    "vertical": -0.61,
+    "dist": 2.72,
+    "tip": [
+     189.08,
+     -12.49,
+     -40.61
+    ],
+    "t": 8.21
+   },
+   {
+    "spot": 3,
+    "radial": -0.87,
+    "sideways": -3.57,
+    "vertical": -0.9,
+    "dist": 3.78,
+    "tip": [
+     189.32,
+     6.39,
+     -40.9
+    ],
+    "t": 14.06
+   },
+   {
+    "spot": 4,
+    "radial": -0.93,
+    "sideways": -3.55,
+    "vertical": -0.18,
+    "dist": 3.68,
+    "tip": [
+     189.63,
+     26.35,
+     -40.18
+    ],
+    "t": 19.9
+   },
+   {
+    "spot": 3,
+    "radial": -0.72,
+    "sideways": 1.95,
+    "vertical": -0.32,
+    "dist": 2.11,
+    "tip": [
+     189.18,
+     11.91,
+     -40.32
+    ],
+    "t": 25.72
+   },
+   {
+    "spot": 2,
+    "radial": -0.25,
+    "sideways": 5.04,
+    "vertical": -0.36,
+    "dist": 5.06,
+    "tip": [
+     190.02,
+     -4.96,
+     -40.36
+    ],
+    "t": 31.54
+   },
+   {
+    "spot": 1,
+    "radial": -1.8,
+    "sideways": 3.98,
+    "vertical": -0.78,
+    "dist": 4.44,
+    "tip": [
+     188.84,
+     -25.79,
+     -40.78
+    ],
+    "t": 37.4
+   },
+   {
+    "spot": 2,
+    "radial": -1.12,
+    "sideways": -2.24,
+    "vertical": -0.47,
+    "dist": 2.55,
+    "tip": [
+     188.76,
+     -12.18,
+     -40.47
+    ],
+    "t": 43.24
+   },
+   {
+    "spot": 3,
+    "radial": -0.88,
+    "sideways": -3.57,
+    "vertical": -0.49,
+    "dist": 3.71,
+    "tip": [
+     189.31,
+     6.39,
+     -40.49
+    ],
+    "t": 49.1
+   },
+   {
+    "spot": 4,
+    "radial": -1.06,
+    "sideways": -3.55,
+    "vertical": -0.77,
+    "dist": 3.78,
+    "tip": [
+     189.51,
+     26.33,
+     -40.77
+    ],
+    "t": 54.96
+   },
+   {
+    "spot": 3,
+    "radial": -0.2,
+    "sideways": 2.54,
+    "vertical": -0.36,
+    "dist": 2.58,
+    "tip": [
+     189.67,
+     12.53,
+     -40.36
+    ],
+    "t": 60.82
+   },
+   {
+    "spot": 2,
+    "radial": -0.51,
+    "sideways": 5.03,
+    "vertical": -0.34,
+    "dist": 5.07,
+    "tip": [
+     189.75,
+     -4.95,
+     -40.34
+    ],
+    "t": 66.67
+   },
+   {
+    "spot": 1,
+    "radial": -1.86,
+    "sideways": 3.83,
+    "vertical": -1.07,
+    "dist": 4.39,
+    "tip": [
+     188.76,
+     -25.93,
+     -41.07
+    ],
+    "t": 72.51
+   }
+  ],
+  "tops": [
+   {
+    "spot": 1,
+    "radial": -6.55,
+    "sideways": 3.73,
+    "vertical": -12.06,
+    "dist": 14.22,
+    "inward": -4.69
+   },
+   {
+    "spot": 2,
+    "radial": -6.21,
+    "sideways": -2.46,
+    "vertical": -11.26,
+    "dist": 13.09,
+    "inward": -5.42
+   },
+   {
+    "spot": 3,
+    "radial": -6.49,
+    "sideways": -3.46,
+    "vertical": -11.22,
+    "dist": 13.42,
+    "inward": -5.62
+   },
+   {
+    "spot": 4,
+    "radial": -6.59,
+    "sideways": -3.45,
+    "vertical": -12.34,
+    "dist": 14.41,
+    "inward": -5.66
+   },
+   {
+    "spot": 3,
+    "radial": -6.2,
+    "sideways": 1.9,
+    "vertical": -11.26,
+    "dist": 13.0,
+    "inward": -5.48
+   },
+   {
+    "spot": 2,
+    "radial": -6.52,
+    "sideways": 4.87,
+    "vertical": -11.22,
+    "dist": 13.86,
+    "inward": -6.27
+   },
+   {
+    "spot": 1,
+    "radial": -6.55,
+    "sideways": 3.73,
+    "vertical": -12.06,
+    "dist": 14.22,
+    "inward": -4.75
+   },
+   {
+    "spot": 2,
+    "radial": -6.21,
+    "sideways": -2.18,
+    "vertical": -11.26,
+    "dist": 13.04,
+    "inward": -5.08
+   },
+   {
+    "spot": 3,
+    "radial": -6.49,
+    "sideways": -3.46,
+    "vertical": -11.22,
+    "dist": 13.42,
+    "inward": -5.61
+   },
+   {
+    "spot": 4,
+    "radial": -6.54,
+    "sideways": -3.45,
+    "vertical": -12.06,
+    "dist": 14.14,
+    "inward": -5.49
+   },
+   {
+    "spot": 3,
+    "radial": -6.21,
+    "sideways": 2.46,
+    "vertical": -11.26,
+    "dist": 13.09,
+    "inward": -6.01
+   },
+   {
+    "spot": 2,
+    "radial": -6.52,
+    "sideways": 4.87,
+    "vertical": -11.22,
+    "dist": 13.86,
+    "inward": -6.01
+   },
+   {
+    "spot": 1,
+    "radial": -6.55,
+    "sideways": 3.73,
+    "vertical": -12.06,
+    "dist": 14.22,
+    "inward": -4.69
+   }
+  ],
+  "repeat_by_spot": [
+   0.22,
+   3.86,
+   3.24,
+   0.3
+  ]
+ },
+ "comp": {
+  "summary": {
+   "bottom_mean": 0.88,
+   "bottom_worst": 1.37,
+   "top_mean": 1.0,
+   "top_worst": 2.36,
+   "repeat_worst": 1.11,
+   "path_worst": 4.74,
+   "path_mean": 3.85,
+   "inward_worst": -2.84,
+   "inward_mean": -0.28,
+   "rough": 13.66,
+   "bottom_radial_mean": -0.44,
+   "bottom_sideways_mean": 0.14,
+   "bottom_vertical_mean": -0.15
+  },
+  "dips": [
+   {
+    "spot": 1,
+    "radial": -0.39,
+    "sideways": 0.62,
+    "vertical": -0.6,
+    "dist": 0.94,
+    "tip": [
+     189.71,
+     -29.33,
+     -40.6
+    ],
+    "t": 2.35
+   },
+   {
+    "spot": 2,
+    "radial": -0.86,
+    "sideways": -0.21,
+    "vertical": -0.08,
+    "dist": 0.89,
+    "tip": [
+     189.13,
+     -10.16,
+     -40.08
+    ],
+    "t": 8.2
+   },
+   {
+    "spot": 3,
+    "radial": -0.07,
+    "sideways": -0.37,
+    "vertical": -0.15,
+    "dist": 0.41,
+    "tip": [
+     189.95,
+     9.62,
+     -40.15
+    ],
+    "t": 14.04
+   },
+   {
+    "spot": 4,
+    "radial": -0.26,
+    "sideways": -0.62,
+    "vertical": -0.01,
+    "dist": 0.67,
+    "tip": [
+     189.84,
+     29.35,
+     -40.01
+    ],
+    "t": 19.87
+   },
+   {
+    "spot": 3,
+    "radial": 0.19,
+    "sideways": -0.37,
+    "vertical": -0.17,
+    "dist": 0.45,
+    "tip": [
+     190.21,
+     9.64,
+     -40.17
+    ],
+    "t": 25.71
+   },
+   {
+    "spot": 2,
+    "radial": 0.59,
+    "sideways": 0.37,
+    "vertical": -0.02,
+    "dist": 0.7,
+    "tip": [
+     190.61,
+     -9.66,
+     -40.02
+    ],
+    "t": 31.54
+   },
+   {
+    "spot": 1,
+    "radial": -0.26,
+    "sideways": 1.2,
+    "vertical": -0.01,
+    "dist": 1.23,
+    "tip": [
+     189.93,
+     -28.77,
+     -40.01
+    ],
+    "t": 37.37
+   },
+   {
+    "spot": 2,
+    "radial": -0.86,
+    "sideways": 0.37,
+    "vertical": -0.08,
+    "dist": 0.94,
+    "tip": [
+     189.16,
+     -9.58,
+     -40.08
+    ],
+    "t": 43.19
+   },
+   {
+    "spot": 3,
+    "radial": -0.8,
+    "sideways": -0.37,
+    "vertical": 0.21,
+    "dist": 0.91,
+    "tip": [
+     189.22,
+     9.59,
+     -39.79
+    ],
+    "t": 49.05
+   },
+   {
+    "spot": 4,
+    "radial": -0.65,
+    "sideways": -0.61,
+    "vertical": -0.58,
+    "dist": 1.06,
+    "tip": [
+     189.45,
+     29.29,
+     -40.58
+    ],
+    "t": 54.89
+   },
+   {
+    "spot": 3,
+    "radial": -0.86,
+    "sideways": 0.5,
+    "vertical": -0.08,
+    "dist": 1.0,
+    "tip": [
+     189.11,
+     10.45,
+     -40.08
+    ],
+    "t": 60.74
+   },
+   {
+    "spot": 2,
+    "radial": -0.86,
+    "sideways": 0.08,
+    "vertical": -0.08,
+    "dist": 0.87,
+    "tip": [
+     189.14,
+     -9.87,
+     -40.08
+    ],
+    "t": 66.57
+   },
+   {
+    "spot": 1,
+    "radial": -0.59,
+    "sideways": 1.2,
+    "vertical": -0.28,
+    "dist": 1.37,
+    "tip": [
+     189.6,
+     -28.72,
+     -40.28
+    ],
+    "t": 72.41
+   }
+  ],
+  "tops": [
+   {
+    "spot": 1,
+    "radial": -0.51,
+    "sideways": 0.61,
+    "vertical": -0.0,
+    "dist": 0.8,
+    "inward": -0.12
+   },
+   {
+    "spot": 2,
+    "radial": -0.74,
+    "sideways": -0.21,
+    "vertical": 0.06,
+    "dist": 0.77,
+    "inward": 0.12
+   },
+   {
+    "spot": 3,
+    "radial": -0.74,
+    "sideways": -0.37,
+    "vertical": 0.06,
+    "dist": 0.83,
+    "inward": -0.67
+   },
+   {
+    "spot": 4,
+    "radial": -0.39,
+    "sideways": -0.62,
+    "vertical": -0.51,
+    "dist": 0.89,
+    "inward": -0.12
+   },
+   {
+    "spot": 3,
+    "radial": -0.74,
+    "sideways": -0.37,
+    "vertical": 0.06,
+    "dist": 0.83,
+    "inward": -0.93
+   },
+   {
+    "spot": 2,
+    "radial": -2.25,
+    "sideways": 0.37,
+    "vertical": -0.61,
+    "dist": 2.36,
+    "inward": -2.84
+   },
+   {
+    "spot": 1,
+    "radial": -0.51,
+    "sideways": 1.2,
+    "vertical": -0.0,
+    "dist": 1.31,
+    "inward": -0.24
+   },
+   {
+    "spot": 2,
+    "radial": -0.74,
+    "sideways": 0.37,
+    "vertical": 0.06,
+    "dist": 0.83,
+    "inward": 0.12
+   },
+   {
+    "spot": 3,
+    "radial": -0.74,
+    "sideways": -0.37,
+    "vertical": 0.03,
+    "dist": 0.83,
+    "inward": 0.06
+   },
+   {
+    "spot": 4,
+    "radial": 0.02,
+    "sideways": -0.62,
+    "vertical": -0.04,
+    "dist": 0.62,
+    "inward": 0.67
+   },
+   {
+    "spot": 3,
+    "radial": -0.74,
+    "sideways": 0.5,
+    "vertical": 0.06,
+    "dist": 0.9,
+    "inward": 0.12
+   },
+   {
+    "spot": 2,
+    "radial": -0.74,
+    "sideways": 0.08,
+    "vertical": 0.06,
+    "dist": 0.75,
+    "inward": 0.12
+   },
+   {
+    "spot": 1,
+    "radial": -0.51,
+    "sideways": 1.2,
+    "vertical": -0.0,
+    "dist": 1.31,
+    "inward": 0.08
+   }
+  ],
+  "repeat_by_spot": [
+   0.5,
+   1.11,
+   0.81,
+   0.35
+  ]
+ }
+}
